@@ -58,7 +58,7 @@ This project focuses on combining AI + human expertise in a single platform.
     github: "#",
     demo: "#",
     icon: Zap,
-    images: ["/img/iPhone-12-PRO-MAX-consultedge-frontend.vercel.app.png", "/img/iPhone-12-PRO-MAX-consultedge-frontend.vercel.app (1).png", "/img/iPhone-12-PRO-MAX-consultedge-frontend.vercel.app (2).png"]
+    images: ["/consultedge-1.png", "/consultedge-2.png", "/consultedge-3.png"]
   },
 
   {
@@ -93,7 +93,7 @@ Key goal: build a scalable SaaS-level marketplace with modular architecture and 
     github: "#",
     demo: "#",
     icon: Package,
-    images: ["/img/nexora-img-1.png", "/img/nexora-img-2.png", "/img/nexora-img-3.png"]
+    images: ["/nexora-screenshot.png", "/nexora-2.png", "/nexora-3.png"]
   },
 
   {

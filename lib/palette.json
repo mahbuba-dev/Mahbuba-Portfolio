@@ -1,9 +1,9 @@
 {
-  "image": "/consultedge-img-2.png",
-  "Vibrant": "#0872f5",
-  "LightVibrant": "#87bded",
-  "DarkVibrant": "#05bc7c",
-  "Muted": "#9e8a6b",
-  "LightMuted": "#d4c8ae",
-  "DarkMuted": "#2c3149"
+  "image": "/consultedge-1.png",
+  "Vibrant": "#539dbc",
+  "LightVibrant": "#dcf9fb",
+  "DarkVibrant": "#040c24",
+  "Muted": "#666b75",
+  "LightMuted": "#abafb6",
+  "DarkMuted": "#25364a"
 }
