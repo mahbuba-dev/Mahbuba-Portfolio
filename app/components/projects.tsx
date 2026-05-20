@@ -28,10 +28,12 @@ export type Project = {
   features: string[];
   detailsFeatures?: string[];
   stack: string[];
-  github: string;
+  github?: string;
   demo: string;
   icon: LucideIcon;
   badge?: { label: string; icon: LucideIcon };
+  client?: string;
+  server?: string;
 };
 
 export const PROJECTS: Project[] = [
@@ -40,7 +42,7 @@ export const PROJECTS: Project[] = [
     tagline: "Chat, notifications, live sessions, AI",
     description:
       "All-in-one consultation platform with real-time chat, AI features, video sessions, and scalable backend architecture.",
-       longDescription: `
+    longDescription: `
 Consultdge is a full-stack consultation platform built to connect users with experts in real time.
 
 Key Features:
@@ -52,29 +54,29 @@ Key Features:
 
 This project focuses on combining AI + human expertise in a single platform.
   `,
-
-  features: [
-    "Real-time chat system",
-    "AI integration",
-    "Live session support"
-  ],
+    features: [
+      "Real-time chat system",
+      "AI integration",
+      "Live session support"
+    ],
     detailsFeatures: [
-  "Real-time chat system using Socket.io",
-  "AI-powered assistant for smart suggestions",
-  "Live video session support (1:1 & group calls)",
-  "Secure authentication (JWT-based login system)",
-  "Role-based access control (Admin, User, Mentor)",
-  "Notification system for live updates",
-  "Scalable backend architecture with Node.js",
-  "Responsive UI for all devices",
-  "Session scheduling system",
-  "User profile management",
-  "Message history & persistence",
-  "Error handling & rate limiting for API security",
-],
+      "Real-time chat system using Socket.io",
+      "AI-powered assistant for smart suggestions",
+      "Live video session support (1:1 & group calls)",
+      "Secure authentication (JWT-based login system)",
+      "Role-based access control (Admin, User, Mentor)",
+      "Notification system for live updates",
+      "Scalable backend architecture with Node.js",
+      "Responsive UI for all devices",
+      "Session scheduling system",
+      "User profile management",
+      "Message history & persistence",
+      "Error handling & rate limiting for API security",
+    ],
     stack: ["Next.js", "Node.js", "Socket.io", "Prisma"],
-    github: "#",
-    demo: "#",
+    client: "https://github.com/mahbuba-dev/consultedge-frontend.git",
+    server: "https://github.com/mahbuba-dev/ConsultEdge-Backend.git",
+    demo: "https://consultedge-frontend.vercel.app/",
     icon: Zap,
   },
 
@@ -107,8 +109,9 @@ Key goal: build a scalable SaaS-level marketplace with modular architecture and 
   "Error handling and logging",
 ],
       stack: ["Next.js", "TypeScript", "Node.js", "MongoDB"],
-    github: "#",
-    demo: "#",
+   client: "https://github.com/mahbuba-dev/consultedge-frontend.git",
+    server: "https://github.com/mahbuba-dev/Nexora-Frontend.git",
+    demo: "https://nexora-frontend-nine.vercel.app/",
     icon: Package,
   },
 
@@ -138,9 +141,10 @@ This project focuses on providing a comprehensive mentorship experience with cle
   "Real-time notifications and updates",
 ],
     stack: ["Next.js", "Prisma", "MongoDB"],
-    github: "#",
-    demo: "#",
-    icon: GraduationCap,
+    client: "https://github.com/mahbuba-dev/consultedge-frontend.git",
+    server: "https://github.com/mahbuba-dev/Nexora-Frontend.git",
+    demo: "https://nexora-frontend-nine.vercel.app/",
+     icon: GraduationCap,
   },
 ];
 
@@ -226,28 +230,51 @@ function ProjectCard({
       </div>
 
       {/* BUTTONS */}
-      <div className="mt-5 flex justify-between border-t pt-4 text-xs items-center">
-
-        <a href={project.github} target="_blank" className="hover:underline">
-          Code
-        </a>
-
-        <a
-          href={project.demo}
-          target="_blank"
-          className="font-medium text-blue-500 hover:text-blue-600"
-        >
-          Live
-        </a>
-
-        {/* ✅ DETAILS BUTTON FIXED */}
+      <div className="mt-5 flex justify-between items-center border-t pt-4">
+        {/* Left: Main action buttons */}
+        <div className="flex gap-2">
+          {project.client && (
+            <a
+              href={project.client}
+              target="_blank"
+              className="px-3 py-1 rounded bg-blue-500 text-white text-xs font-medium shadow hover:bg-blue-600 transition"
+            >
+              Client
+            </a>
+          )}
+          {project.server && (
+            <a
+              href={project.server}
+              target="_blank"
+              className="px-3 py-1 rounded bg-blue-500 text-white text-xs font-medium shadow hover:bg-blue-600 transition"
+            >
+              Server
+            </a>
+          )}
+          {project.github && !project.client && !project.server && (
+            <a
+              href={project.github}
+              target="_blank"
+              className="px-3 py-1 rounded bg-blue-500 text-white text-xs font-medium shadow hover:bg-blue-600 transition"
+            >
+              GitHub
+            </a>
+          )}
+          <a
+            href={project.demo}
+            target="_blank"
+            className="px-3 py-1 rounded bg-blue-500 text-white text-xs font-medium shadow hover:bg-blue-600 transition"
+          >
+            Live
+          </a>
+        </div>
+        {/* Right: Details button */}
         <Link
           href={`/projects/${slugify(project.title)}`}
-          className="text-[11px] text-blue-500 hover:text-blue-600 font-medium"
+          className="px-3 py-1 rounded border border-blue-500 text-blue-500 text-xs font-semibold hover:bg-blue-50 dark:hover:bg-blue-900/20 transition ml-2"
         >
           Details →
         </Link>
-
       </div>
     </motion.div>
   );
