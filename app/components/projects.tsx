@@ -2,6 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { Button } from "../../components/ui/button";
+import "./projects-gradient-underline.css";
 import { motion } from "framer-motion";
 import { type LucideIcon } from "lucide-react";
 import {
@@ -109,8 +111,8 @@ Key goal: build a scalable SaaS-level marketplace with modular architecture and 
   "Error handling and logging",
 ],
       stack: ["Next.js", "TypeScript", "Node.js", "MongoDB"],
-   client: "https://github.com/mahbuba-dev/consultedge-frontend.git",
-    server: "https://github.com/mahbuba-dev/Nexora-Frontend.git",
+   client: "https://github.com/mahbuba-dev/Nexora-Frontend.git",
+    server: "https://github.com/mahbuba-dev/Nexora-Backend.git",
     demo: "https://nexora-frontend-nine.vercel.app/",
     icon: Package,
   },
@@ -234,46 +236,41 @@ function ProjectCard({
         {/* Left: Main action buttons */}
         <div className="flex gap-2">
           {project.client && (
-            <a
-              href={project.client}
-              target="_blank"
-              className="px-3 py-1 rounded bg-blue-500 text-white text-xs font-medium shadow hover:bg-blue-600 transition"
-            >
-              Client
+            <a href={project.client} target="_blank" rel="noopener noreferrer">
+              <Button variant="link" size="sm" className="text-blue-600 hover:text-blue-800 px-2">
+                <span className="gradient-underline-text">Client</span>
+              </Button>
             </a>
           )}
           {project.server && (
-            <a
-              href={project.server}
-              target="_blank"
-              className="px-3 py-1 rounded bg-blue-500 text-white text-xs font-medium shadow hover:bg-blue-600 transition"
-            >
-              Server
+            <a href={project.server} target="_blank" rel="noopener noreferrer">
+              <Button variant="link" size="sm" className="text-blue-600 hover:text-blue-800 px-2">
+                <span className="gradient-underline-text">Server</span>
+              </Button>
             </a>
           )}
           {project.github && !project.client && !project.server && (
-            <a
-              href={project.github}
-              target="_blank"
-              className="px-3 py-1 rounded bg-blue-500 text-white text-xs font-medium shadow hover:bg-blue-600 transition"
-            >
-              GitHub
+            <a href={project.github} target="_blank" rel="noopener noreferrer">
+              <Button variant="link" size="sm" className="text-blue-600 hover:text-blue-800 px-2">
+                <span className="gradient-underline-text">GitHub</span>
+              </Button>
             </a>
           )}
-          <a
-            href={project.demo}
-            target="_blank"
-            className="px-3 py-1 rounded bg-blue-500 text-white text-xs font-medium shadow hover:bg-blue-600 transition"
-          >
-            Live
+          <a href={project.demo} target="_blank" rel="noopener noreferrer">
+            <Button variant="link" size="sm" className="text-blue-600 hover:text-blue-800 px-2">
+              <span className="gradient-underline-text">Live</span>
+            </Button>
           </a>
         </div>
         {/* Right: Details button */}
-        <Link
-          href={`/projects/${slugify(project.title)}`}
-          className="px-3 py-1 rounded border border-blue-500 text-blue-500 text-xs font-semibold hover:bg-blue-50 dark:hover:bg-blue-900/20 transition ml-2"
-        >
-          Details →
+        <Link href={`/projects/${slugify(project.title)}`}>
+          <Button
+            variant="outline"
+            size="sm"
+            className="ml-2 font-semibold border-2 border-transparent px-4 py-1.5 transition-all details-gradient-border"
+          >
+            Details
+          </Button>
         </Link>
       </div>
     </motion.div>

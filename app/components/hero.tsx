@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, Briefcase, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import "./hero-animated-outline.css";
 
 const PORTRAIT_SRC = "/img/mahbuba-professional-img.png";
 
@@ -104,35 +105,26 @@ export function Hero() {
           >
 
              <Button asChild variant="outline" size="lg" className="rounded-full">
-                           <Link href="/resume">
-                             <Download className="h-3.5 w-3.5" />
-                             Download Resume
-                           </Link>
+              <Link href="/resume" className="flex items-center gap-2">
+                <Download className="h-3.5 w-3.5" />
+                Download Resume
+              </Link>
                          </Button>
 
 
           
 
         <Button
-  asChild
-  size="lg"
-  className="relative group px-5 bg-transparent border-0"
->
-  <Link href="#contact" className="relative flex items-center gap-2">
-
-    {/* GRADIENT BORDER */}
-    <span className="absolute inset-0 rounded-md p-[1px] bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 transition-all duration-500 group-hover:scale-105" />
-
-    {/* INNER BACKGROUND */}
-    <span className="absolute inset-[1px] rounded-md bg-background transition-all duration-300 group-hover:bg-white/5" />
-
-    {/* CONTENT */}
-    <span className="relative z-10 flex items-center gap-2 text-foreground">
-      <Mail className="h-4 w-4" />
-      Let&apos;s Work Together
-    </span>
-  </Link>
-</Button>
+          asChild
+          size="lg"
+          className="animated-border px-7 py-2 bg-white text-neutral-900 dark:bg-background dark:text-white border-2 border-transparent rounded-full font-semibold shadow-md relative overflow-visible"
+        >
+          <Link href="#contact" className="relative flex items-center gap-2 z-10">
+            <span className="absolute inset-0 -z-10 rounded-full bg-cyan-400/25 blur-xl pointer-events-none" />
+            <Mail className="h-4 w-4 text-neutral-900" />
+            <span className="text-neutral-900 drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]">Let&apos;s Work Together</span>
+          </Link>
+        </Button>
           </motion.div>
         </div>
 

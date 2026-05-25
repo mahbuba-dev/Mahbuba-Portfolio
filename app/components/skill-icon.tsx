@@ -23,6 +23,8 @@ import {
   SiGit,
   SiDocker,
   SiOpenai,
+  SiRedux,
+  SiFramer,
 } from "react-icons/si";
 import { LuShieldCheck, LuLink, LuBrain, LuLightbulb } from "react-icons/lu";
 
@@ -37,6 +39,8 @@ type IconEntry = {
 };
 
 const ICONS: Record<string, IconEntry> = {
+    Redux: { Icon: SiRedux, color: "#764ABC" },
+    "Framer Motion": { Icon: SiFramer, color: "#0055FF" },
   HTML: { Icon: SiHtml5, color: "#E34F26" },
   CSS: { Icon: SiCss, color: "#1572B6" },
   JavaScript: { Icon: SiJavascript, color: "#F7DF1E" },

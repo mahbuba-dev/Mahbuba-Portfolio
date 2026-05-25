@@ -2,178 +2,73 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import {
-  Code2,
-  Server,
-  Database,
-  Wrench,
-  Brain,
-  Sparkles,
-  type LucideIcon,
-} from "lucide-react";
 import { SkillIcon } from "./skill-icon";
 
-type Group = {
-  id: string;
-  icon: LucideIcon;
-  label: string;
-  blurb: string;
-  items: string[];
-};
-
-const GROUPS: Group[] = [
-  {
-    id: "frontend",
-    icon: Code2,
-    label: "Frontend",
-    blurb: "Fast, accessible UI systems with clean animations.",
-    items: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Next.js",
-      "Tailwind",
-      "ShadCN",
-    ],
-  },
-  {
-    id: "backend",
-    icon: Server,
-    label: "Backend",
-    blurb: "Scalable APIs with authentication & validation.",
-    items: ["Node.js", "Express", "REST", "JWT", "Zod"],
-  },
-  {
-    id: "database",
-    icon: Database,
-    label: "Database",
-    blurb: "Structured data modeling with performance focus.",
-    items: ["MongoDB", "PostgreSQL", "Prisma", "Firebase"],
-  },
-  {
-    id: "tools",
-    icon: Wrench,
-    label: "Tools",
-    blurb: "Daily workflow & deployment tools.",
-    items: ["Git", "Docker"],
-  },
-  
+const SKILLS = [
+  "Next.js",
+  "React",
+  "TypeScript",
+  "JavaScript",
+  "Tailwind CSS",
+  "ShadCN UI",
+  "Node.js",
+  "Express.js",
+  "PostgreSQL",
+  "Prisma ORM",
+  "MongoDB",
+  "Zod",
+  "Redux",
+  "Framer Motion",
+  "Docker",
+  "Git",
+  "HTML",
+  "CSS",
 ];
 
 export function Skills() {
   return (
-    <section
-      id="skills"
-      className="relative scroll-mt-24 py-5 max-w-7xl  mx-auto md:px-3 px-4 lg:px-5"
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
-        <Header />
-
-        {/* ✅ FIXED GRID (4 columns max on large screens) */}
-        <div
-          className="
-            mt-8
-            grid
-            gap-5
-            sm:grid-cols-2
-            lg:grid-cols-3
-            xl:grid-cols-4
-            auto-rows-fr
-          "
-        >
-          {GROUPS.map((g, i) => (
-            <motion.article
-              key={g.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.03 }}
-              className="
-                group relative flex flex-col
-                overflow-hidden rounded-xl
-                border border-white/10
-                bg-white/60 dark:bg-white/5
-                backdrop-blur-xl
-
-                p-5 sm:p-5
-                min-h-[210px]
-                transition-all duration-300
-                hover:-translate-y-1
-              "
-            >
-              {/* softer glow */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -right-24 -top-24 h-52 w-52 rounded-full opacity-20 blur-3xl"
-                style={{
-                  background:
-                    "linear-gradient(135deg, var(--brand-purple), var(--brand-blue), var(--brand-cyan))",
-                }}
-              />
-
-              {/* HEADER */}
-              <div className="flex items-start gap-3">
-                <span className="icon-halo h-9 w-9 shrink-0 text-white">
-                  <g.icon className="h-4.5 w-4.5" />
+    <section id="skills" className="relative scroll-mt-24 py-16 w-full">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
+        {/* Heading */}
+        <div className="mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-left">
+            <span className="text-neutral-900 dark:text-white">Skills&nbsp;</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-cyan-400 to-sky-400">& Technologies</span>
+          </h2>
+          <p className="text-neutral-600 dark:text-white/70 mt-3 text-base text-left">
+            Tools and frameworks I use to build scalable and modern web applications.
+          </p>
+        </div>
+        <div>
+          <div
+            className="grid grid-rows-2 grid-cols-9 gap-5"
+            style={{gridAutoFlow: 'column'}}
+          >
+            {SKILLS.map((item, i) => (
+              <motion.div
+                key={item}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: i * 0.025 }}
+                className="flex flex-col items-center justify-center rounded-2xl border border-neutral-200 dark:border-white/10 bg-white/80 dark:bg-[#181f2a] backdrop-blur-xl shadow-xl py-3 px-3 min-w-[105px] transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl text-center group"
+                style={{ position: 'relative', overflow: 'hidden' }}
+              >
+                <span className="relative flex items-center justify-center h-12 w-12 mb-2 rounded-xl bg-neutral-100 dark:bg-[#232b3a] shadow-md group-hover:scale-105 transition-transform duration-200">
+                  <SkillIcon
+                    name={item}
+                    className="h-7 w-7 drop-shadow-[0_1px_2px_rgba(0,0,0,0.10)] dark:drop-shadow-[0_1px_2px_rgba(255,255,255,0.18)]"
+                  />
+                  <span className="absolute inset-0 rounded-xl pointer-events-none" style={{boxShadow:'0 0 16px 2px #6366f133'}}></span>
                 </span>
-
-                <div>
-                  <h3 className="text-base font-semibold">{g.label}</h3>
-                  <p className="mt-0.5 text-[11px] text-muted-foreground leading-snug">
-                    {g.blurb}
-                  </p>
-                </div>
-              </div>
-
-              {/* ITEMS (compact chips) */}
-              <ul className="mt-4 flex flex-wrap gap-1.5">
-                {g.items.slice(0, 8).map((item) => (
-                  <li
-                    key={item}
-                    className="
-                      inline-flex items-center gap-1.5
-                      rounded-full
-                      border border-white/10
-                      bg-white/70 dark:bg-white/10
-                      px-2.5 py-1
-                      text-[10px]
-                      font-medium
-                    "
-                  >
-                    <span className="grid h-3.5 w-3.5 place-items-center rounded-full bg-white">
-                      <SkillIcon name={item} className="h-2.5 w-2.5" />
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              {/* FOOTER */}
-          
-            </motion.article>
-          ))}
+                <p className="text-neutral-900 dark:text-white text-[12px] font-semibold leading-tight break-words drop-shadow-sm">
+                  {item}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function Header() {
-  return (
-    <div className="max-w-2xl">
-      <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-gradient">
-        Toolkit
-      </p>
-
-      <h2 className="mt-2 text-2xl sm:text-2xl lg:text-3xl font-semibold">
-        Technologies I use
-      </h2>
-
-      <p className="mt-2 text-xs text-muted-foreground">
-        A focused stack for building scalable full-stack applications.
-      </p>
-    </div>
   );
 }

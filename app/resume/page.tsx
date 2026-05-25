@@ -73,26 +73,26 @@ const SOFT_SKILLS = [
 ];
 
 const LANGUAGES = [
-  { name: "English", level: "Full Professional", bar: 5 },
-  { name: "Bangla", level: "Native/ Bilingual", bar: 5 },
+  { name: "English", level: "Professional", bar: 5 },
+  { name: "Bangla", level: "Native", bar: 5 },
 ];
 
 export default function ResumePage() {
   return (
-    <div className="mx-auto max-w-2xl bg-white print:bg-white rounded-lg shadow-lg p-6 mt-8 mb-8 border border-gray-300 print:shadow-none print:border-black">
+    <div className="mx-auto max-w-2xl bg-white print:bg-white rounded-lg shadow-lg px-4 pt-3 pb-8 mt-2 mb-10 border border-gray-300 print:shadow-none print:border-black text-[13px] sm:text-[14px]">
       {/* Print Button */}
       <div className="flex justify-end print:hidden mb-2">
         <PrintButton />
       </div>
 
       {/* HEADER */}
-      <div className="text-center">
-        <h1 className="text-2xl font-bold tracking-wide">{CONTACT.name}</h1>
-        <div className="mt-1 text-sm">{CONTACT.address} | {CONTACT.phone}</div>
-        <div className="mt-1 text-sm">
+      <div className="flex flex-col items-center text-center">
+        <h1 className="text-xl sm:text-2xl font-bold tracking-wide mb-1">{CONTACT.name}</h1>
+        <div className="text-xs sm:text-sm">{CONTACT.address} | {CONTACT.phone}</div>
+        <div className="mt-1 text-xs sm:text-sm">
           <a href={`mailto:${CONTACT.email}`} className="text-blue-700 underline hover:text-blue-900">{CONTACT.email}</a>
         </div>
-        <div className="mt-1 flex justify-center gap-4 text-blue-700 text-sm">
+        <div className="mt-1 flex flex-wrap justify-center gap-2 text-blue-700 text-xs sm:text-sm">
           <a href={CONTACT.linkedin} target="_blank" className="underline hover:text-blue-900">LinkedIn</a>
           <span className="text-gray-400">·</span>
           <a href={CONTACT.portfolio} target="_blank" className="underline hover:text-blue-900">Portfolio</a>
@@ -106,12 +106,12 @@ export default function ResumePage() {
 
       {/* SUMMARY */}
       <Section title="SUMMARY">
-        <div className="text-sm leading-relaxed">{SUMMARY}</div>
+        <div className="text-xs sm:text-sm leading-relaxed">{SUMMARY}</div>
       </Section>
 
       {/* SKILLS */}
       <Section title="SKILLS">
-        <ul className="text-sm grid grid-cols-1 gap-1">
+        <ul className="text-xs sm:text-sm grid grid-cols-1 gap-1">
           {SKILLS.map((s) => (
             <li key={s.label}><span className="font-semibold">{s.label}</span> {s.value}</li>
           ))}
@@ -120,7 +120,7 @@ export default function ResumePage() {
 
       {/* CERTIFICATIONS */}
       <Section title="CERTIFICATIONS">
-        <ul className="list-disc pl-5 text-sm">
+        <ul className="list-disc pl-5 text-xs sm:text-sm">
           {CERTIFICATIONS.map((c) => (
             <li key={c}>{c}</li>
           ))}
@@ -129,12 +129,12 @@ export default function ResumePage() {
 
       {/* PROJECTS */}
       <Section title="PROJECTS">
-        <div className="space-y-6">
+        <div className="space-y-4">
           {PROJECTS.map((p) => (
             <div key={p.name}>
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                <div className="font-semibold text-sm">{p.name}</div>
-                <div className="flex gap-2 mt-1 sm:mt-0">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                <div className="font-semibold text-xs sm:text-sm">{p.name}</div>
+                <div className="flex flex-wrap gap-2 mt-1 sm:mt-0 justify-end">
                   <a href={p.client} target="_blank" className="text-blue-700 underline font-medium hover:text-blue-900">Client</a>
                   <span>|</span>
                   <a href={p.server} target="_blank" className="text-blue-700 underline font-medium hover:text-blue-900">Server</a>
@@ -142,8 +142,8 @@ export default function ResumePage() {
                   <a href={p.live} target="_blank" className="text-blue-700 underline font-medium hover:text-blue-900">Live</a>
                 </div>
               </div>
-              <div className="text-xs mt-1 italic">{p.features[0]}</div>
-              <div className="text-xs mt-1">Tech Stack: {p.stack}</div>
+              <div className="text-[11px] mt-1 italic">{p.features[0]}</div>
+              <div className="text-[11px] mt-1">Tech Stack: {p.stack}</div>
             </div>
           ))}
         </div>
@@ -151,23 +151,23 @@ export default function ResumePage() {
 
       {/* SOFT SKILLS */}
       <Section title="SOFT SKILLS">
-        <div className="text-sm">
+        <div className="text-xs sm:text-sm">
           {SOFT_SKILLS.join(" · ")}
         </div>
       </Section>
 
       {/* LANGUAGES */}
       <Section title="LANGUAGES">
-        <div className="grid grid-cols-1 gap-2 text-sm">
+        <div className="grid grid-cols-1 gap-2 text-xs sm:text-sm">
           {LANGUAGES.map((lang) => (
             <div key={lang.name} className="flex items-center gap-2">
-              <span className="w-24 font-medium">{lang.name}:</span>
+              <span className="w-20 sm:w-24 font-medium">{lang.name}:</span>
               <span className="flex-1 flex gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <span key={i} className={`inline-block h-2 w-7 rounded-full ${i < lang.bar ? 'bg-black' : 'bg-gray-300'}`}></span>
+                  <span key={i} className={`inline-block h-1.5 w-5 sm:h-2 sm:w-7 rounded-full ${i < lang.bar ? 'bg-black' : 'bg-gray-300'}`}></span>
                 ))}
               </span>
-              <span className="ml-2 text-xs text-gray-600">{lang.level}</span>
+              <span className="ml-2 text-[10px] sm:text-xs text-gray-600">{lang.level}</span>
             </div>
           ))}
         </div>
@@ -175,7 +175,7 @@ export default function ResumePage() {
 
       {/* Footer */}
       <hr className="my-4 border-black" />
-      <div className="text-center text-xs text-gray-500 mt-2">
+      <div className="text-center text-[10px] sm:text-xs text-gray-500 mt-2">
         © {new Date().getFullYear()} Mahbuba Akter
       </div>
     </div>
@@ -184,10 +184,10 @@ export default function ResumePage() {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="mt-5">
+    <section className="mt-4">
       <div className="flex items-center gap-2 mb-1">
         <span className="flex-1 border-t border-black" />
-        <span className="font-bold text-xs tracking-widest text-black whitespace-nowrap">{title}</span>
+        <span className="font-bold text-[11px] sm:text-xs tracking-widest text-black whitespace-nowrap uppercase">{title}</span>
         <span className="flex-1 border-t border-black" />
       </div>
       {children}

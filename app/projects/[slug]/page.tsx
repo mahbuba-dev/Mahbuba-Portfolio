@@ -48,12 +48,21 @@ export default async function ProjectDetailsPage({ params }: Props) {
           {project.images.map((img, i) => (
             <div
               key={i}
-              className="rounded-2xl  border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm"
+              className="flex items-center justify-center aspect-[4/3] rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-md overflow-hidden"
+              style={{ minHeight: '180px', minWidth: '0' }}
             >
-              <img
-                src={img}
-                className="h-52 w-full object-contain"
-              />
+              {img ? (
+                <img
+                  src={img}
+                  alt={`Screenshot ${i + 1}`}
+                  className="object-cover w-full h-full transition-transform duration-200 hover:scale-105 rounded-xl"
+                  style={{ maxHeight: '240px', maxWidth: '100%' }}
+                />
+              ) : (
+                <div className="flex items-center justify-center w-full h-full text-gray-400 text-xs bg-gray-50 dark:bg-zinc-800">
+                  No image
+                </div>
+              )}
             </div>
           ))}
         </div>

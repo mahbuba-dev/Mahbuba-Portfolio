@@ -1,0 +1,17 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="16" fill="#06B6D4"/>
+  <g filter="url(#glow)">
+    <ellipse cx="32" cy="28" rx="12" ry="6" fill="#F1F5F9"/>
+    <rect x="20" y="28" width="24" height="12" rx="6" fill="#A5F3FC"/>
+  </g>
+  <text x="32" y="58" text-anchor="middle" font-size="10" fill="#0E7490" font-family="Arial">Database</text>
+  <defs>
+    <filter id="glow" x="0" y="0" width="64" height="64" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>
