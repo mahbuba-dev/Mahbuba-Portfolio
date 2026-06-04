@@ -25,6 +25,44 @@ const SKILLS = [
   "CSS",
 ];
 
+const ICON_ACCENT: Record<string, string> = {
+  "Next.js": "bg-slate-100/90 dark:bg-slate-700/55 ring-1 ring-slate-300/70 dark:ring-slate-400/30 text-slate-900 dark:text-slate-100",
+  React: "bg-slate-100 dark:bg-cyan-500/26 ring-1 ring-cyan-300 dark:ring-cyan-300/52",
+  TypeScript: "bg-blue-100/85 dark:bg-blue-500/28 ring-1 ring-blue-300/70 dark:ring-blue-300/52",
+  JavaScript: "bg-neutral-100 dark:bg-yellow-500/26 ring-1 ring-yellow-400/80 dark:ring-yellow-300/56",
+  "Tailwind CSS": "bg-sky-100/85 dark:bg-sky-500/28 ring-1 ring-sky-300/70 dark:ring-sky-300/52",
+  "ShadCN UI": "bg-zinc-100/90 dark:bg-zinc-600/30 ring-1 ring-zinc-300/70 dark:ring-zinc-400/28 text-zinc-900 dark:text-zinc-100",
+  "Node.js": "bg-lime-100/85 dark:bg-lime-500/24 ring-1 ring-lime-300/70 dark:ring-lime-300/52",
+  "Express.js": "bg-slate-100/90 dark:bg-slate-600/28 ring-1 ring-slate-300/70 dark:ring-slate-400/28 text-slate-900 dark:text-slate-100",
+  PostgreSQL: "bg-indigo-100/85 dark:bg-indigo-500/26 ring-1 ring-indigo-300/70 dark:ring-indigo-300/52",
+  "Prisma ORM": "bg-slate-100/92 dark:bg-slate-500/24 ring-1 ring-slate-300/75 dark:ring-slate-300/34 text-slate-900 dark:text-slate-100",
+  MongoDB: "bg-emerald-100/85 dark:bg-emerald-500/24 ring-1 ring-emerald-300/70 dark:ring-emerald-300/52",
+  Zod: "bg-blue-100/85 dark:bg-blue-500/28 ring-1 ring-blue-300/70 dark:ring-blue-300/52",
+  Redux: "bg-violet-100/85 dark:bg-violet-500/26 ring-1 ring-violet-300/70 dark:ring-violet-300/52",
+  "Framer Motion": "bg-blue-100/85 dark:bg-blue-500/28 ring-1 ring-blue-300/70 dark:ring-blue-300/52",
+  Docker: "bg-sky-100/85 dark:bg-sky-500/28 ring-1 ring-sky-300/70 dark:ring-sky-300/52",
+  Git: "bg-orange-100/88 dark:bg-orange-500/28 ring-1 ring-orange-300/70 dark:ring-orange-300/52",
+  HTML: "bg-orange-100/88 dark:bg-orange-500/30 ring-1 ring-orange-300/70 dark:ring-orange-300/54",
+  CSS: "bg-blue-100/88 dark:bg-blue-500/28 ring-1 ring-blue-300/70 dark:ring-blue-300/52",
+};
+
+const ICON_VISIBILITY: Record<string, string> = {
+  React: "dark:filter-[contrast(1.45)_saturate(1.6)_brightness(1.3)] dark:drop-shadow-[0_0_8px_rgba(80,220,255,0.32)]",
+  TypeScript: "dark:filter-[contrast(1.38)_saturate(1.5)_brightness(1.28)] dark:drop-shadow-[0_0_8px_rgba(88,149,255,0.3)]",
+  JavaScript: "dark:filter-[contrast(1.45)_saturate(1.65)_brightness(1.35)] dark:drop-shadow-[0_0_8px_rgba(255,230,96,0.34)]",
+  "Tailwind CSS": "dark:filter-[contrast(1.4)_saturate(1.55)_brightness(1.3)] dark:drop-shadow-[0_0_8px_rgba(86,225,255,0.3)]",
+  "Node.js": "dark:filter-[contrast(1.4)_saturate(1.5)_brightness(1.3)] dark:drop-shadow-[0_0_8px_rgba(126,214,95,0.3)]",
+  PostgreSQL: "dark:filter-[contrast(1.4)_saturate(1.55)_brightness(1.28)] dark:drop-shadow-[0_0_8px_rgba(111,146,255,0.3)]",
+  MongoDB: "dark:filter-[contrast(1.38)_saturate(1.5)_brightness(1.3)] dark:drop-shadow-[0_0_8px_rgba(120,214,132,0.28)]",
+  Zod: "dark:filter-[contrast(1.4)_saturate(1.55)_brightness(1.3)] dark:drop-shadow-[0_0_8px_rgba(92,152,255,0.3)]",
+  Redux: "dark:filter-[contrast(1.42)_saturate(1.55)_brightness(1.3)] dark:drop-shadow-[0_0_8px_rgba(170,126,255,0.3)]",
+  "Framer Motion": "dark:filter-[contrast(1.42)_saturate(1.6)_brightness(1.32)] dark:drop-shadow-[0_0_8px_rgba(100,149,255,0.32)]",
+  Docker: "dark:filter-[contrast(1.42)_saturate(1.58)_brightness(1.32)] dark:drop-shadow-[0_0_8px_rgba(98,183,255,0.32)]",
+  Git: "dark:filter-[contrast(1.4)_saturate(1.58)_brightness(1.3)] dark:drop-shadow-[0_0_8px_rgba(255,140,94,0.32)]",
+  HTML: "dark:filter-[contrast(1.42)_saturate(1.62)_brightness(1.32)] dark:drop-shadow-[0_0_8px_rgba(255,134,84,0.34)]",
+  CSS: "dark:filter-[contrast(1.4)_saturate(1.58)_brightness(1.3)] dark:drop-shadow-[0_0_8px_rgba(89,166,255,0.32)]",
+};
+
 export function Skills() {
   return (
     <section id="skills" className="relative scroll-mt-24 py-16 w-full">
@@ -54,14 +92,15 @@ export function Skills() {
                 className="flex flex-col items-center justify-center rounded-2xl border border-neutral-200 dark:border-white/10 bg-white/80 dark:bg-[#181f2a] backdrop-blur-xl shadow-xl py-3 px-3 min-w-[105px] transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl text-center group"
                 style={{ position: 'relative', overflow: 'hidden' }}
               >
-                <span className="relative flex items-center justify-center h-12 w-12 mb-2 rounded-xl bg-neutral-100 dark:bg-[#232b3a] shadow-md group-hover:scale-105 transition-transform duration-200">
+                <span
+                  className={`relative flex items-center justify-center h-14 w-14 mb-2 rounded-xl shadow-md group-hover:scale-110 transition-transform duration-200 ${ICON_ACCENT[item] ?? "bg-neutral-100 dark:bg-[#232b3a]"}`}
+                >
                   <SkillIcon
                     name={item}
-                    className="h-7 w-7 drop-shadow-[0_1px_2px_rgba(0,0,0,0.10)] dark:drop-shadow-[0_1px_2px_rgba(255,255,255,0.18)]"
+                    className={`h-8 w-8 filter-[contrast(1.15)_saturate(1.2)] ${ICON_VISIBILITY[item] ?? "dark:filter-[contrast(1.35)_saturate(1.45)_brightness(1.24)] dark:drop-shadow-[0_0_6px_rgba(255,255,255,0.2)]"}`}
                   />
-                  <span className="absolute inset-0 rounded-xl pointer-events-none" style={{boxShadow:'0 0 16px 2px #6366f133'}}></span>
                 </span>
-                <p className="text-neutral-900 dark:text-white text-[12px] font-semibold leading-tight break-words drop-shadow-sm">
+                <p className="text-neutral-900 dark:text-white text-[12px] font-bold leading-tight break-words drop-shadow-sm">
                   {item}
                 </p>
               </motion.div>

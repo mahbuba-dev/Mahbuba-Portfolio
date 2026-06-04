@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../../components/ui/button";
 import "./projects-gradient-underline.css";
@@ -10,6 +11,13 @@ import {
   Zap,
   Package,
   GraduationCap,
+  ChevronLeft,
+  ChevronRight,
+  Code2,
+  ServerCog,
+  Globe,
+  FileText,
+  ArrowUpRight,
 } from "lucide-react";
 
 /* =======================
@@ -33,6 +41,9 @@ export type Project = {
   github?: string;
   demo: string;
   icon: LucideIcon;
+  previewVideo?: string;
+  previewPoster?: string;
+  screenshots?: string[];
   badge?: { label: string; icon: LucideIcon };
   client?: string;
   server?: string;
@@ -76,6 +87,7 @@ This project focuses on combining AI + human expertise in a single platform.
       "Error handling & rate limiting for API security",
     ],
     stack: ["Next.js", "Node.js", "Socket.io", "Prisma"],
+    screenshots: ["/consultedge-1.png", "/consultedge-2.png", "/consultedge-3.png"],
     client: "https://github.com/mahbuba-dev/consultedge-frontend.git",
     server: "https://github.com/mahbuba-dev/ConsultEdge-Backend.git",
     demo: "https://consultedge-frontend.vercel.app/",
@@ -111,6 +123,7 @@ Key goal: build a scalable SaaS-level marketplace with modular architecture and 
   "Error handling and logging",
 ],
       stack: ["Next.js", "TypeScript", "Node.js", "MongoDB"],
+    screenshots: ["/nexora-screenshot.png", "/nexora-2.png", "/nexora-3.png"],
    client: "https://github.com/mahbuba-dev/Nexora-Frontend.git",
     server: "https://github.com/mahbuba-dev/Nexora-Backend.git",
     demo: "https://nexora-frontend-nine.vercel.app/",
@@ -143,6 +156,7 @@ This project focuses on providing a comprehensive mentorship experience with cle
   "Real-time notifications and updates",
 ],
     stack: ["Next.js", "Prisma", "MongoDB"],
+    screenshots: ["/img/consultedge-img-1.png"],
     client: "https://github.com/mahbuba-dev/consultedge-frontend.git",
     server: "https://github.com/mahbuba-dev/Nexora-Frontend.git",
     demo: "https://nexora-frontend-nine.vercel.app/",
@@ -151,7 +165,7 @@ This project focuses on providing a comprehensive mentorship experience with cle
 ];
 
 export function Projects() {
-  const items = PROJECTS.slice(0, 3);
+  const items = PROJECTS.slice(0, 2);
 
   return (
     <section id="projects" className="py-7">
@@ -168,7 +182,7 @@ export function Projects() {
         </div>
 
         {/* GRID */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
           {items.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}
@@ -187,6 +201,31 @@ function ProjectCard({
   index: number;
 }) {
   const Icon = project.icon;
+  const screenshots = project.screenshots ?? [];
+  const hasVideoPreview = Boolean(project.previewVideo);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const hasScreenshots = !hasVideoPreview && screenshots.length > 0;
+  const hasMultipleScreenshots = !hasVideoPreview && screenshots.length > 1;
+
+  React.useEffect(() => {
+    if (!hasMultipleScreenshots) return;
+
+    const intervalId = window.setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % screenshots.length);
+    }, 3000);
+
+    return () => window.clearInterval(intervalId);
+  }, [hasMultipleScreenshots, screenshots.length]);
+
+  const goNext = () => {
+    if (!hasMultipleScreenshots) return;
+    setActiveIndex((prev) => (prev + 1) % screenshots.length);
+  };
+
+  const goPrev = () => {
+    if (!hasMultipleScreenshots) return;
+    setActiveIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
+  };
 
   return (
     <motion.div
@@ -196,6 +235,78 @@ function ProjectCard({
       transition={{ delay: index * 0.1 }}
       className="rounded-2xl border bg-white/70 dark:bg-white/5 p-6 shadow-sm hover:shadow-lg transition"
     >
+      <div className="mb-5">
+        <div className="relative overflow-hidden rounded-2xl border border-black/10 bg-slate-100 dark:border-white/10 dark:bg-slate-900/70 p-3">
+          <div className="relative aspect-16/10 overflow-hidden rounded-xl bg-white/70 dark:bg-slate-800/70">
+            {hasVideoPreview ? (
+              <video
+                key={project.previewVideo}
+                className="h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster={project.previewPoster ?? screenshots[0]}
+              >
+                <source src={project.previewVideo} type="video/mp4" />
+              </video>
+            ) : hasScreenshots ? (
+              <Image
+                src={screenshots[activeIndex]}
+                alt={`${project.title} screenshot ${activeIndex + 1}`}
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover"
+              />
+            ) : (
+              <div className="absolute inset-0 grid place-items-center text-sm text-muted-foreground">
+                Screenshot coming soon
+              </div>
+            )}
+
+            {hasMultipleScreenshots && (
+              <>
+                <button
+                  type="button"
+                  aria-label="Previous screenshot"
+                  onClick={goPrev}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-black/65 text-white transition hover:bg-black/80"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next screenshot"
+                  onClick={goNext}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-black/65 text-white transition hover:bg-black/80"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+
+        {hasMultipleScreenshots && (
+          <div className="mt-3 flex items-center justify-center gap-2">
+            {screenshots.map((_, dotIndex) => (
+              <button
+                key={`${project.title}-dot-${dotIndex}`}
+                type="button"
+                aria-label={`Go to screenshot ${dotIndex + 1}`}
+                onClick={() => setActiveIndex(dotIndex)}
+                className={`h-2.5 rounded-full transition-all ${
+                  dotIndex === activeIndex
+                    ? "w-7 bg-emerald-500"
+                    : "w-2.5 bg-slate-300 dark:bg-slate-500"
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
       {/* ICON */}
       <div className="flex items-center gap-3">
         <div className="h-10 w-10 rounded-lg bg-black/5 dark:bg-white/10 flex items-center justify-center">
@@ -231,47 +342,65 @@ function ProjectCard({
         ))}
       </div>
 
-      {/* BUTTONS */}
-      <div className="mt-5 flex justify-between items-center border-t pt-4">
-        {/* Left: Main action buttons */}
-        <div className="flex gap-2">
-          {project.client && (
-            <a href={project.client} target="_blank" rel="noopener noreferrer">
-              <Button variant="link" size="sm" className="text-blue-600 hover:text-blue-800 px-2">
-                <span className="gradient-underline-text">Client</span>
+      {/* ACTION BAR */}
+      <div className="mt-6 rounded-xl border border-black/10 bg-black/2 p-3 dark:border-white/10 dark:bg-white/3">
+        <div className="flex items-center justify-between gap-1.5 flex-nowrap">
+            {project.client && (
+              <a href={project.client} target="_blank" rel="noopener noreferrer">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="group relative overflow-hidden h-6 whitespace-nowrap rounded-full border-blue-500/25 bg-blue-500/5 px-1.5 text-[9px] font-medium text-blue-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-500/10 hover:text-blue-800 hover:shadow-md hover:shadow-blue-500/20 dark:text-blue-300 dark:hover:text-blue-200 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-blue-400 after:to-cyan-400 after:transition-all after:duration-300 hover:after:w-[72%]"
+                >
+                  <Code2 className="h-2.5 w-2.5 transition-transform duration-300 group-hover:scale-110" /> Frontend Repo
+                </Button>
+              </a>
+            )}
+
+            {project.server && (
+              <a href={project.server} target="_blank" rel="noopener noreferrer">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="group relative overflow-hidden h-6 whitespace-nowrap rounded-full border-indigo-500/25 bg-indigo-500/5 px-1.5 text-[9px] font-medium text-indigo-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-indigo-500/10 hover:text-indigo-800 hover:shadow-md hover:shadow-indigo-500/20 dark:text-indigo-300 dark:hover:text-indigo-200 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-indigo-400 after:to-sky-400 after:transition-all after:duration-300 hover:after:w-[72%]"
+                >
+                  <ServerCog className="h-2.5 w-2.5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" /> Backend Repo
+                </Button>
+              </a>
+            )}
+
+            {project.github && !project.client && !project.server && (
+              <a href={project.github} target="_blank" rel="noopener noreferrer">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="group relative overflow-hidden h-6 whitespace-nowrap rounded-full border-slate-500/25 bg-slate-500/5 px-1.5 text-[9px] font-medium text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-500/10 hover:text-slate-900 hover:shadow-md hover:shadow-slate-500/20 dark:text-slate-300 dark:hover:text-slate-100 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-slate-300 after:to-slate-100 after:transition-all after:duration-300 hover:after:w-[72%]"
+                >
+                  <Code2 className="h-2.5 w-2.5 transition-transform duration-300 group-hover:scale-110" /> Source
+                </Button>
+              </a>
+            )}
+
+            <a href={project.demo} target="_blank" rel="noopener noreferrer">
+              <Button
+                size="sm"
+                className="group relative overflow-hidden h-6 whitespace-nowrap rounded-full bg-linear-to-r from-blue-600 via-cyan-500 to-teal-500 px-1.5 text-[9px] font-semibold text-white shadow-md shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-lg hover:shadow-cyan-400/35 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-white/80 after:to-cyan-100 after:transition-all after:duration-300 hover:after:w-[78%]"
+              >
+                <Globe className="h-2.5 w-2.5 transition-transform duration-300 group-hover:scale-110" /> Live Product
+                <ArrowUpRight className="h-2.5 w-2.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Button>
             </a>
-          )}
-          {project.server && (
-            <a href={project.server} target="_blank" rel="noopener noreferrer">
-              <Button variant="link" size="sm" className="text-blue-600 hover:text-blue-800 px-2">
-                <span className="gradient-underline-text">Server</span>
+
+            <Link href={`/projects/${slugify(project.title)}`}>
+              <Button
+                variant="outline"
+                size="sm"
+                className="group relative overflow-hidden h-6 whitespace-nowrap rounded-full border-black/15 bg-white/80 px-1.5 text-[9px] font-semibold text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-md hover:shadow-slate-500/20 dark:border-white/15 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-slate-400 after:to-slate-700 dark:after:from-slate-300 dark:after:to-slate-100 after:transition-all after:duration-300 hover:after:w-[72%]"
+              >
+                <FileText className="h-2.5 w-2.5 transition-transform duration-300 group-hover:scale-110" /> Case Study
               </Button>
-            </a>
-          )}
-          {project.github && !project.client && !project.server && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer">
-              <Button variant="link" size="sm" className="text-blue-600 hover:text-blue-800 px-2">
-                <span className="gradient-underline-text">GitHub</span>
-              </Button>
-            </a>
-          )}
-          <a href={project.demo} target="_blank" rel="noopener noreferrer">
-            <Button variant="link" size="sm" className="text-blue-600 hover:text-blue-800 px-2">
-              <span className="gradient-underline-text">Live</span>
-            </Button>
-          </a>
+            </Link>
         </div>
-        {/* Right: Details button */}
-        <Link href={`/projects/${slugify(project.title)}`}>
-          <Button
-            variant="outline"
-            size="sm"
-            className="ml-2 font-semibold border-2 border-transparent px-4 py-1.5 transition-all details-gradient-border"
-          >
-            Details
-          </Button>
-        </Link>
       </div>
     </motion.div>
   );

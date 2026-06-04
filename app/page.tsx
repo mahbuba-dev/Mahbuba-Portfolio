@@ -5,6 +5,7 @@ import { Skills } from "./components/skills";
 import { Projects } from "./components/projects";
 import { LatestPosts } from "./components/latest-posts";
 import { Contact } from "./components/contact";
+import { RecruiterChatbot } from "./components/recruiter-chatbot";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Projects />
       <LatestPosts />
       <Contact />
+      <RecruiterChatbot />
     </main>
   );
 }
