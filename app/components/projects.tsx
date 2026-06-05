@@ -87,7 +87,15 @@ This project focuses on combining AI + human expertise in a single platform.
       "Error handling & rate limiting for API security",
     ],
     stack: ["Next.js", "Node.js", "Socket.io", "Prisma"],
-    screenshots: ["/consultedge-1.png", "/consultedge-2.png", "/consultedge-3.png"],
+    screenshots: [
+      "/consultedge-1.png",
+      "/consultedge-2.png",
+      "/consultedge-3.png",
+      "/img/consultedge-admin-dashboard.png",
+      "/img/consultedge-ai.png",
+    ],
+    previewVideo: "/videos/consultedge-preview.webm",
+    previewPoster: "/consultedge-1.png",
     client: "https://github.com/mahbuba-dev/consultedge-frontend.git",
     server: "https://github.com/mahbuba-dev/ConsultEdge-Backend.git",
     demo: "https://consultedge-frontend.vercel.app/",
@@ -204,27 +212,59 @@ function ProjectCard({
   const screenshots = project.screenshots ?? [];
   const hasVideoPreview = Boolean(project.previewVideo);
   const [activeIndex, setActiveIndex] = React.useState(0);
-  const hasScreenshots = !hasVideoPreview && screenshots.length > 0;
-  const hasMultipleScreenshots = !hasVideoPreview && screenshots.length > 1;
+  const videoType = React.useMemo(() => {
+    if (!project.previewVideo) return undefined;
+
+    const lower = project.previewVideo.toLowerCase();
+    if (lower.endsWith(".webm")) return "video/webm";
+    if (lower.endsWith(".mp4")) return "video/mp4";
+
+    return undefined;
+  }, [project.previewVideo]);
+  const mediaItems = React.useMemo(() => {
+    const items: Array<{
+      kind: "video" | "image";
+      src: string;
+      type?: string;
+    }> = [];
+
+    if (project.previewVideo) {
+      items.push({ kind: "video", src: project.previewVideo, type: videoType });
+    }
+
+    screenshots.forEach((src) => {
+      items.push({ kind: "image", src });
+    });
+
+    return items;
+  }, [project.previewVideo, screenshots, videoType]);
+  const hasMedia = mediaItems.length > 0;
+  const hasMultipleMedia = mediaItems.length > 1;
+  const activeMedia = mediaItems[activeIndex];
 
   React.useEffect(() => {
-    if (!hasMultipleScreenshots) return;
+    if (!hasMultipleMedia) return;
 
     const intervalId = window.setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % screenshots.length);
+      setActiveIndex((prev) => (prev + 1) % mediaItems.length);
     }, 3000);
 
     return () => window.clearInterval(intervalId);
-  }, [hasMultipleScreenshots, screenshots.length]);
+  }, [hasMultipleMedia, mediaItems.length]);
+
+  React.useEffect(() => {
+    if (activeIndex < mediaItems.length) return;
+    setActiveIndex(0);
+  }, [activeIndex, mediaItems.length]);
 
   const goNext = () => {
-    if (!hasMultipleScreenshots) return;
-    setActiveIndex((prev) => (prev + 1) % screenshots.length);
+    if (!hasMultipleMedia) return;
+    setActiveIndex((prev) => (prev + 1) % mediaItems.length);
   };
 
   const goPrev = () => {
-    if (!hasMultipleScreenshots) return;
-    setActiveIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
+    if (!hasMultipleMedia) return;
+    setActiveIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
   };
 
   return (
@@ -238,9 +278,9 @@ function ProjectCard({
       <div className="mb-5">
         <div className="relative overflow-hidden rounded-2xl border border-black/10 bg-slate-100 dark:border-white/10 dark:bg-slate-900/70 p-3">
           <div className="relative aspect-16/10 overflow-hidden rounded-xl bg-white/70 dark:bg-slate-800/70">
-            {hasVideoPreview ? (
+            {hasMedia && activeMedia?.kind === "video" ? (
               <video
-                key={project.previewVideo}
+                key={activeMedia.src}
                 className="h-full w-full object-cover"
                 autoPlay
                 muted
@@ -249,12 +289,12 @@ function ProjectCard({
                 preload="metadata"
                 poster={project.previewPoster ?? screenshots[0]}
               >
-                <source src={project.previewVideo} type="video/mp4" />
+                <source src={activeMedia.src} type={activeMedia.type} />
               </video>
-            ) : hasScreenshots ? (
+            ) : hasMedia && activeMedia?.kind === "image" ? (
               <Image
-                src={screenshots[activeIndex]}
-                alt={`${project.title} screenshot ${activeIndex + 1}`}
+                src={activeMedia.src}
+                alt={`${project.title} preview ${activeIndex + 1}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
@@ -265,11 +305,11 @@ function ProjectCard({
               </div>
             )}
 
-            {hasMultipleScreenshots && (
+            {hasMultipleMedia && (
               <>
                 <button
                   type="button"
-                  aria-label="Previous screenshot"
+                  aria-label="Previous preview"
                   onClick={goPrev}
                   className="absolute left-3 top-1/2 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-black/65 text-white transition hover:bg-black/80"
                 >
@@ -277,7 +317,7 @@ function ProjectCard({
                 </button>
                 <button
                   type="button"
-                  aria-label="Next screenshot"
+                  aria-label="Next preview"
                   onClick={goNext}
                   className="absolute right-3 top-1/2 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-black/65 text-white transition hover:bg-black/80"
                 >
@@ -288,13 +328,13 @@ function ProjectCard({
           </div>
         </div>
 
-        {hasMultipleScreenshots && (
+        {hasMultipleMedia && (
           <div className="mt-3 flex items-center justify-center gap-2">
-            {screenshots.map((_, dotIndex) => (
+            {mediaItems.map((item, dotIndex) => (
               <button
                 key={`${project.title}-dot-${dotIndex}`}
                 type="button"
-                aria-label={`Go to screenshot ${dotIndex + 1}`}
+                aria-label={`Go to ${item.kind} ${dotIndex + 1}`}
                 onClick={() => setActiveIndex(dotIndex)}
                 className={`h-2.5 rounded-full transition-all ${
                   dotIndex === activeIndex

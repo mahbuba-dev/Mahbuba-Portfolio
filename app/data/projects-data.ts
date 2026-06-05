@@ -58,7 +58,13 @@ This project focuses on combining AI + human expertise in a single platform.
     github: "#",
     demo: "#",
     icon: Zap,
-    images: ["/consultedge-1.png", "/consultedge-2.png", "/consultedge-3.png"]
+    images: [
+      "/consultedge-1.png",
+      "/consultedge-2.png",
+      "/consultedge-3.png",
+      "/img/consultedge-admin-dashboard.png",
+      "/img/consultedge-ai.png",
+    ]
   },
 
   {
