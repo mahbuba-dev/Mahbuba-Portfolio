@@ -91,8 +91,7 @@ export function Skills() {
                 },
               },
             }}
-            className="grid grid-rows-3 grid-cols-6 gap-3 lg:grid-rows-2 lg:grid-cols-9 lg:gap-5"
-            style={{ gridAutoFlow: "column" }}
+            className="grid grid-cols-3 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-9 xl:gap-5"
           >
             {SKILLS.map((item, i) => (
               <motion.div
@@ -103,7 +102,7 @@ export function Skills() {
                 }}
                 transition={{ duration: 0.34, ease: "easeOut" }}
                 whileHover={{ y: -6, scale: 1.02 }}
-                className="flex w-full flex-col items-center justify-center rounded-2xl border border-neutral-200 dark:border-white/10 bg-white/80 dark:bg-[#181f2a] backdrop-blur-xl shadow-xl py-3 px-3 min-w-0 transition-all duration-300 hover:shadow-2xl text-center group lg:min-w-26.25"
+                className="flex w-full flex-col items-center justify-center rounded-2xl border border-neutral-200 dark:border-white/10 bg-white/80 dark:bg-[#181f2a] backdrop-blur-xl shadow-xl py-3 px-2.5 sm:px-3 min-w-0 transition-all duration-300 hover:shadow-2xl text-center group"
                 style={{ position: "relative", overflow: "hidden" }}
               >
                 <motion.span

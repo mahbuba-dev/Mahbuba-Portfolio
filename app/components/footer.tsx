@@ -21,7 +21,7 @@ const SOCIALS = [
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative isolate mt-20 overflow-hidden border-t border-white/15 dark:border-white/10">
+    <footer className="relative isolate mt-8 overflow-hidden border-t border-white/15 sm:mt-12 dark:border-white/10">
       {/* gradient wash */}
       <div
         aria-hidden

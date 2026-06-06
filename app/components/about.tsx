@@ -45,7 +45,7 @@ export function About() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center max-w-[420px] w-full lg:items-center md:items-start gap-4 md:gap-8 lg:gap-5"
+          className="flex flex-col items-center max-w-105 w-full lg:items-center md:items-start gap-4 md:gap-8 lg:gap-5"
         >
           {/* IMAGE */}
           <div className="relative w-full max-w-sm mx-auto">
@@ -54,7 +54,7 @@ export function About() {
               <div className="absolute -right-8 bottom-8 h-32 w-32 rounded-full blur-3xl bg-cyan-400/20" />
             </div>
 
-            <div className="relative overflow-hidden rounded-[1.8rem] p-[2px] shadow-lg">
+            <div className="relative overflow-hidden rounded-[1.8rem] p-0.5 shadow-lg">
               <span
                 className="absolute inset-0 rounded-[1.8rem]"
                 style={{
@@ -68,8 +68,8 @@ export function About() {
                   src={PORTRAIT_SRC}
                   alt="Mahbuba Akter"
                   width={500}
-                  height={200}
-                  className="w-full h-auto  md:h-[300px] lg:h-[165px] object-cover rounded-[1.6rem]"
+                  height={320}
+                  className="h-60 w-full object-cover rounded-[1.6rem] sm:h-70 md:h-80"
                   priority
                 />
               </div>
@@ -78,8 +78,8 @@ export function About() {
 
          
           {/* FACTS MOVED UNDER IMAGE (BALANCES HEIGHT) */}
-       <dl className="
-  grid grid-cols-2 
+      <dl className="
+        grid grid-cols-1 sm:grid-cols-2
   gap-x-8 gap-y-4
   w-full max-w-sm 
   rounded-xl border border-white/10 bg-white/60 p-4 
@@ -92,7 +92,7 @@ export function About() {
       <span className="
         grid h-6 w-6 place-items-center 
         rounded-full 
-        bg-gradient-to-r from-blue-500 to-cyan-400 
+        bg-linear-to-r from-blue-500 to-cyan-400
         text-white
       ">
         <f.icon className="h-3 w-3" />
@@ -100,10 +100,10 @@ export function About() {
 
       {/* SMALLER TEXT */}
       <div className="min-w-0">
-        <dt className="md:text-[9px] text-[5px]  uppercase tracking-widest text-muted-foreground">
+        <dt className="text-[10px] uppercase tracking-widest text-muted-foreground sm:text-[11px]">
           {f.label}
         </dt>
-        <dd className="md:text-[7px] text-[5px] font-medium">
+        <dd className="text-[11px] font-medium sm:text-xs">
           {f.value}
         </dd>
       </div>
@@ -122,8 +122,8 @@ export function About() {
                 rel="noreferrer"
                 className="relative grid h-7 w-7 place-items-center rounded-full transition hover:scale-105"
               >
-                <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400" />
-                <span className="absolute inset-[2px] rounded-full bg-background" />
+                <span className="absolute inset-0 rounded-full bg-linear-to-r from-blue-500 to-cyan-400" />
+                <span className="absolute inset-0.5 rounded-full bg-background" />
                 <s.Icon className="relative h-3 w-3" />
               </Link>
             ))}

@@ -12,7 +12,7 @@ const PORTRAIT_SRC = "/img/mahbuba-professional-img.png";
 
 export function Hero() {
   return (
-    <section className=" relative isolate overflow-hidden min-h-[40vh] flex items-center md:pt-0 pb-0 sm:mb-4 lg:px-10 sm:pb-10 lg:pt-4 max-w-7xl mx-auto ">
+    <section className="relative isolate overflow-hidden min-h-[40vh] max-w-7xl mx-auto flex items-center px-2 pb-4 pt-2 sm:px-0 sm:pb-8 lg:px-10 lg:pt-4">
       <ShapeField />
 
       {/* background fades */}
@@ -47,7 +47,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.05 }}
-            className="font-display mt-2 text-4xl font-bold leading-[1.05] tracking-[-0.03em] sm:text-5xl md:text-4xl"
+            className="font-display mt-2 text-3xl font-bold leading-[1.08] tracking-[-0.03em] sm:text-4xl md:text-4xl"
           >
             I&apos;m{" "}
             <span className="text-brand-gradient animate-gradient-x">
@@ -145,7 +145,7 @@ export function Hero() {
 /* unchanged portrait + shapes (kept clean) */
 function PortraitBlob({ src }: { src: string }) {
   return (
-    <div className="relative h-72 w-56 sm:w-64 md:h-96 md:w-72 lg:w-[20rem] flex items-center justify-center">
+    <div className="relative flex h-64 w-48 items-center justify-center sm:h-72 sm:w-56 md:h-96 md:w-72 lg:w-[20rem]">
 
       {/* BACKGROUND FLOATING GLOW ORBS */}
       <motion.div
@@ -180,7 +180,7 @@ function PortraitBlob({ src }: { src: string }) {
       <motion.div
         whileHover={{ scale: 1.03, rotate: 0.5 }}
         transition={{ type: "spring", stiffness: 120 }}
-        className="relative z-10 overflow-hidden rounded-[2rem] p-[2px] shadow-2xl"
+        className="relative z-10 overflow-hidden rounded-[2rem] p-0.5 shadow-2xl"
       >
         {/* animated border glow */}
         <div className="absolute inset-0 bg-brand-gradient animate-gradient-x opacity-80" />

@@ -59,7 +59,7 @@ export function Services() {
       id="services"
       className="relative scroll-mt-24 py-8"
     >
-      <div className="mx-auto max-w-[1200px] px-6 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-300 px-4 sm:px-6 lg:px-10">
 
         {/* HEADER */}
         <motion.div

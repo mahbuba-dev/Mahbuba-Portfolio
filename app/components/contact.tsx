@@ -73,7 +73,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="scroll-mt-24 py-5">
+    <section id="contact" className="scroll-mt-24 pt-5 pb-2 sm:pb-4">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-10 md:grid-cols-2">
           <motion.div
@@ -103,7 +103,7 @@ export function Contact() {
       href="mailto:mahbubaislam7010@gmail.com"
       className="group flex items-center gap-3 rounded-lg border border-border/40 bg-white/5 px-3 py-2 backdrop-blur-xl transition-all hover:border-indigo-400/40 hover:bg-white/10 dark:bg-white/5 dark:hover:bg-white/10"
     >
-      <span className="grid h-7 w-7 place-items-center rounded-md bg-gradient-to-br from-indigo-500 via-sky-500 to-cyan-500 text-white shadow-md ring-1 ring-white/30">
+      <span className="grid h-7 w-7 place-items-center rounded-md bg-linear-to-br from-indigo-500 via-sky-500 to-cyan-500 text-white shadow-md ring-1 ring-white/30">
         <Mail className="h-3.5 w-3.5" />
       </span>
 
@@ -114,7 +114,7 @@ export function Contact() {
   </li>
 
   {/* GITHUB + LINKEDIN ROW */}
-  <div className="grid grid-cols-2 gap-3">
+  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
 
     {/* GITHUB */}
     <li>
@@ -123,7 +123,7 @@ export function Contact() {
         target="_blank"
         className="group flex items-center gap-3 rounded-lg border border-border/40 bg-white/5 px-3 py-2 backdrop-blur-xl transition-all hover:border-indigo-400/40 hover:bg-white/10 dark:bg-white/5 dark:hover:bg-white/10"
       >
-        <span className="grid h-7 w-7 place-items-center rounded-md bg-gradient-to-br from-slate-200 via-slate-100 to-white text-slate-900 shadow-md ring-1 ring-white/30 dark:from-slate-700 dark:via-slate-600 dark:to-slate-500 dark:text-white">
+        <span className="grid h-7 w-7 place-items-center rounded-md bg-linear-to-br from-slate-200 via-slate-100 to-white text-slate-900 shadow-md ring-1 ring-white/30 dark:from-slate-700 dark:via-slate-600 dark:to-slate-500 dark:text-white">
           <GithubIcon className="h-3.5 w-3.5" />
         </span>
 
@@ -140,7 +140,7 @@ export function Contact() {
         target="_blank"
         className="group flex items-center gap-3 rounded-lg border border-border/40 bg-white/5 px-3 py-2 backdrop-blur-xl transition-all hover:border-indigo-400/40 hover:bg-white/10 dark:bg-white/5 dark:hover:bg-white/10"
       >
-        <span className="grid h-7 w-7 place-items-center rounded-md bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-500 text-white shadow-md ring-1 ring-white/30">
+        <span className="grid h-7 w-7 place-items-center rounded-md bg-linear-to-br from-sky-400 via-blue-500 to-indigo-500 text-white shadow-md ring-1 ring-white/30">
           <LinkedinIcon className="h-3.5 w-3.5" />
         </span>
 
