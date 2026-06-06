@@ -91,7 +91,7 @@ export function Skills() {
                 },
               },
             }}
-            className="grid grid-rows-2 grid-cols-9 gap-3"
+            className="grid grid-cols-2 gap-0 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-9 lg:gap-5"
             style={{ gridAutoFlow: "column" }}
           >
             {SKILLS.map((item, i) => (
