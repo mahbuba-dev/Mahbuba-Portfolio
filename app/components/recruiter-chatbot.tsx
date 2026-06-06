@@ -184,7 +184,7 @@ export function RecruiterChatbot() {
           <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3 dark:border-white/10">
             <div className="flex items-center gap-2">
               <span className="relative grid h-8 w-8 place-items-center rounded-full bg-slate-900 shadow-inner ring-1 ring-cyan-300/25">
-                <span className="grid h-6.5 w-6.5 place-items-center rounded-full bg-linear-to-br from-violet-500 via-fuchsia-500 to-indigo-500 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)]">
+                <span className="grid h-6.5 w-6.5 place-items-center rounded-full bg-[linear-gradient(135deg,var(--brand-blue),var(--brand-cyan),var(--brand-aqua))] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)]">
                   <Bot className="h-3.5 w-3.5" strokeWidth={2.2} />
                 </span>
                 <span className="absolute -bottom-0.5 -right-0.5 rounded-full border border-white/35 bg-cyan-400 px-1 text-[8px] font-bold leading-3 text-slate-900 dark:border-slate-900/35">
@@ -289,18 +289,18 @@ export function RecruiterChatbot() {
         onClick={() => setOpen((prev) => !prev)}
         whileHover={{ y: -2, scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="pointer-events-auto relative ml-auto flex h-14 items-center gap-2 rounded-full border border-cyan-300/30 bg-slate-900/90 pl-1.5 pr-4 text-white shadow-xl shadow-cyan-500/30 backdrop-blur"
+        className="pointer-events-auto relative ml-auto flex h-12 items-center gap-1.5 rounded-full border border-cyan-300/30 bg-slate-900/90 pl-1 pr-3 text-white shadow-xl shadow-cyan-500/30 backdrop-blur"
         aria-label="Open Mahbuba AI assistant"
       >
-        <span className="relative grid h-11 w-11 place-items-center rounded-full bg-slate-900 ring-2 ring-cyan-300/45 shadow-md shadow-cyan-400/40">
-          <span className="grid h-8 w-8 place-items-center rounded-full bg-linear-to-br from-violet-500 via-fuchsia-500 to-indigo-500 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.4)]">
-            <Bot className="h-4.5 w-4.5" strokeWidth={2.4} />
+        <span className="relative grid h-9 w-9 place-items-center rounded-full bg-slate-900 ring-2 ring-cyan-300/45 shadow-md shadow-cyan-400/40">
+          <span className="grid h-6.5 w-6.5 place-items-center rounded-full bg-[linear-gradient(135deg,var(--brand-blue),var(--brand-cyan),var(--brand-aqua))] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.4)]">
+            <Bot className="h-4 w-4" strokeWidth={2.4} />
           </span>
           <span className="absolute -bottom-0.5 -right-0.5 grid h-4 w-4 place-items-center rounded-full border border-white/35 bg-cyan-400 text-[8px] font-bold text-slate-900 dark:border-slate-900/35">
             AI
           </span>
         </span>
-        <span className="text-sm font-semibold tracking-tight text-cyan-50">Mahbuba's AI</span>
+        <span className="text-[13px] font-semibold tracking-tight text-cyan-50">Mahbuba's AI</span>
         <span className="absolute -right-1 -top-1 rounded-full border border-cyan-200/30 bg-cyan-400 px-1.5 py-0.5 text-[10px] font-semibold text-slate-900">
           LIVE
         </span>
