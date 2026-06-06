@@ -78,7 +78,7 @@ export function Navbar() {
         scrolled && "bg-white/25 dark:bg-black/40"
       )}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-3 sm:px-6 max-[380px]:h-14 max-[380px]:px-2">
 
         {/* LOGO */}
         <Link href="/" className="flex items-center mt-1 justify-center">
@@ -112,7 +112,7 @@ export function Navbar() {
                 {/* glow underline */}
                 <span
                   className={cn(
-                    "absolute left-2 right-2 -bottom-1 h-[2px] rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400 transition-transform duration-300",
+                    "absolute left-2 right-2 -bottom-1 h-0.5 rounded-full bg-linear-to-r from-indigo-500 to-cyan-400 transition-transform duration-300",
                     isActive(link.href)
                       ? "scale-x-100"
                       : "scale-x-0 group-hover:scale-x-100"
@@ -156,8 +156,10 @@ export function Navbar() {
         </ul>
 
         {/* RIGHT SIDE */}
-        <div className="flex items-center gap-2">
-          <CommandPaletteTrigger />
+        <div className="flex items-center gap-2 max-[380px]:gap-1">
+          <div className="max-[380px]:hidden">
+            <CommandPaletteTrigger />
+          </div>
           <ThemeToggle />
 
           {/* MOBILE BUTTON */}

@@ -77,7 +77,7 @@ export default function RootLayout({
             <Navbar />
 
             {/* ✅ FIXED: NO CONTAINER WRAPPER (IMPORTANT FOR ROUTING) */}
-            <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
+            <main className="flex-1 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 max-[380px]:px-2 pb-16 sm:pb-20">
               {children}
             </main>
 

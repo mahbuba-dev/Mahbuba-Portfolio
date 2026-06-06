@@ -12,7 +12,7 @@ const PORTRAIT_SRC = "/img/mahbuba-professional-img.png";
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden min-h-[40vh] max-w-7xl mx-auto flex items-center px-2 pb-4 pt-2 sm:px-0 sm:pb-8 lg:px-10 lg:pt-4">
+    <section className="relative isolate overflow-hidden min-h-[40vh] max-w-7xl mx-auto flex items-center px-2 pb-6 pt-2 sm:px-0 sm:pb-8 lg:px-10 lg:pt-4 max-[380px]:pb-10">
       <ShapeField />
 
       {/* background fades */}
@@ -47,7 +47,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.05 }}
-            className="font-display mt-2 text-3xl font-bold leading-[1.08] tracking-[-0.03em] sm:text-4xl md:text-4xl"
+            className="font-display mt-2 text-3xl font-bold leading-[1.08] tracking-[-0.03em] sm:text-4xl md:text-4xl max-[380px]:text-[1.75rem]"
           >
             I&apos;m{" "}
             <span className="text-brand-gradient animate-gradient-x">
@@ -70,7 +70,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="mt-1.5 text-xs sm:text-sm text-muted-foreground"
+            className="mt-1.5 text-xs sm:text-sm text-muted-foreground max-[380px]:text-[11px]"
           >
             Next.js • React • TypeScript • Node.js • Prisma • PostgreSQL • MongoDB
           </motion.p>
@@ -80,7 +80,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-3 max-w-2xl text-xs sm:text-sm leading-relaxed text-muted-foreground"
+            className="mt-3 max-w-2xl text-xs sm:text-sm leading-relaxed text-muted-foreground max-[380px]:text-[11px]"
           >
             I specialize in building clean, scalable, and production-ready web applications using modern technologies. I focus on performance, user experience, and maintainable architecture.
           </motion.p>
@@ -145,7 +145,7 @@ export function Hero() {
 /* unchanged portrait + shapes (kept clean) */
 function PortraitBlob({ src }: { src: string }) {
   return (
-    <div className="relative flex h-64 w-48 items-center justify-center sm:h-72 sm:w-56 md:h-96 md:w-72 lg:w-[20rem]">
+    <div className="relative flex h-64 w-48 items-center justify-center sm:h-72 sm:w-56 md:h-96 md:w-72 lg:w-[20rem] max-[380px]:h-56 max-[380px]:w-44">
 
       {/* BACKGROUND FLOATING GLOW ORBS */}
       <motion.div
@@ -192,7 +192,7 @@ function PortraitBlob({ src }: { src: string }) {
             alt="Mahbuba Akter"
             width={420}
             height={420}
-            className="h-64 w-52 sm:h-72 sm:w-60 md:h-80 md:w-64 object-cover"
+            className="h-64 w-52 sm:h-72 sm:w-60 md:h-80 md:w-64 object-cover max-[380px]:h-56 max-[380px]:w-44"
             priority
           />
 

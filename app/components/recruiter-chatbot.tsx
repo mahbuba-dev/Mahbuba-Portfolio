@@ -178,7 +178,7 @@ export function RecruiterChatbot() {
   }
 
   return (
-    <div className="pointer-events-none fixed bottom-3 right-3 z-90 sm:bottom-4 sm:right-4">
+    <div className="pointer-events-none fixed bottom-2 right-2 z-90 sm:bottom-4 sm:right-4">
       {open && (
         <div className="pointer-events-auto mb-3 flex h-[min(78vh,620px)] w-[min(92vw,390px)] flex-col overflow-hidden rounded-2xl border border-slate-300/70 bg-white shadow-2xl dark:border-white/10 dark:bg-[#111827]">
           <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3 dark:border-white/10">
@@ -289,12 +289,12 @@ export function RecruiterChatbot() {
         onClick={() => setOpen((prev) => !prev)}
         whileHover={{ y: -2, scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="pointer-events-auto relative ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/30 bg-slate-900/90 text-white shadow-xl shadow-cyan-500/30 backdrop-blur sm:h-12 sm:w-auto sm:gap-1.5 sm:justify-start sm:pl-1 sm:pr-3"
+        className="pointer-events-auto relative ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/30 bg-slate-900/90 text-white shadow-xl shadow-cyan-500/30 backdrop-blur max-[380px]:h-9 max-[380px]:w-9 sm:h-12 sm:w-auto sm:gap-1.5 sm:justify-start sm:pl-1 sm:pr-3"
         aria-label="Open Mahbuba AI assistant"
       >
-        <span className="relative grid h-8 w-8 place-items-center rounded-full bg-slate-900 ring-2 ring-cyan-300/45 shadow-md shadow-cyan-400/40 sm:h-9 sm:w-9">
+        <span className="relative grid h-8 w-8 place-items-center rounded-full bg-slate-900 ring-2 ring-cyan-300/45 shadow-md shadow-cyan-400/40 max-[380px]:h-7 max-[380px]:w-7 sm:h-9 sm:w-9">
           <span className="grid h-6.5 w-6.5 place-items-center rounded-full bg-[linear-gradient(135deg,var(--brand-blue),var(--brand-cyan),var(--brand-aqua))] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.4)]">
-            <Bot className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={2.4} />
+            <Bot className="h-3.5 w-3.5 max-[380px]:h-3 max-[380px]:w-3 sm:h-4 sm:w-4" strokeWidth={2.4} />
           </span>
           <span className="absolute -bottom-0.5 -right-0.5 grid h-4 w-4 place-items-center rounded-full border border-white/35 bg-cyan-400 text-[8px] font-bold text-slate-900 dark:border-slate-900/35">
             AI
