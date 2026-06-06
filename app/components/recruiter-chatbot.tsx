@@ -2,8 +2,7 @@
 
 import * as React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-import { Send, X } from "lucide-react";
+import { Bot, Send, X } from "lucide-react";
 
 type ChatMessage = {
   role: "user" | "assistant";
@@ -184,15 +183,11 @@ export function RecruiterChatbot() {
         <div className="pointer-events-auto mb-3 flex h-[min(78vh,620px)] w-[min(92vw,390px)] flex-col overflow-hidden rounded-2xl border border-slate-300/70 bg-white shadow-2xl dark:border-white/10 dark:bg-[#111827]">
           <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3 dark:border-white/10">
             <div className="flex items-center gap-2">
-              <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-full ring-1 ring-cyan-300/40">
-                <Image
-                  src="/img/about-img-mahbuba.jpg"
-                  alt="Mahbuba avatar"
-                  fill
-                  sizes="32px"
-                  className="object-cover"
-                />
-                <span className="absolute -bottom-0.5 -right-0.5 rounded-full bg-cyan-400 px-1 text-[8px] font-bold leading-3 text-slate-900">
+              <span className="relative grid h-8 w-8 place-items-center rounded-full bg-slate-900 shadow-inner ring-1 ring-cyan-300/25">
+                <span className="grid h-6.5 w-6.5 place-items-center rounded-full bg-linear-to-br from-violet-500 via-fuchsia-500 to-indigo-500 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)]">
+                  <Bot className="h-3.5 w-3.5" strokeWidth={2.2} />
+                </span>
+                <span className="absolute -bottom-0.5 -right-0.5 rounded-full border border-white/35 bg-cyan-400 px-1 text-[8px] font-bold leading-3 text-slate-900 dark:border-slate-900/35">
                   AI
                 </span>
               </span>
@@ -297,15 +292,11 @@ export function RecruiterChatbot() {
         className="pointer-events-auto relative ml-auto flex h-14 items-center gap-2 rounded-full border border-cyan-300/30 bg-slate-900/90 pl-1.5 pr-4 text-white shadow-xl shadow-cyan-500/30 backdrop-blur"
         aria-label="Open Mahbuba AI assistant"
       >
-        <span className="relative grid h-11 w-11 place-items-center overflow-hidden rounded-full ring-2 ring-cyan-300/45 shadow-md shadow-cyan-400/40">
-          <Image
-            src="/img/about-img-mahbuba.jpg"
-            alt="Mahbuba avatar"
-            fill
-            sizes="44px"
-            className="object-cover"
-          />
-          <span className="absolute -bottom-0.5 -right-0.5 grid h-4 w-4 place-items-center rounded-full bg-cyan-400 text-[8px] font-bold text-slate-900">
+        <span className="relative grid h-11 w-11 place-items-center rounded-full bg-slate-900 ring-2 ring-cyan-300/45 shadow-md shadow-cyan-400/40">
+          <span className="grid h-8 w-8 place-items-center rounded-full bg-linear-to-br from-violet-500 via-fuchsia-500 to-indigo-500 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.4)]">
+            <Bot className="h-4.5 w-4.5" strokeWidth={2.4} />
+          </span>
+          <span className="absolute -bottom-0.5 -right-0.5 grid h-4 w-4 place-items-center rounded-full border border-white/35 bg-cyan-400 text-[8px] font-bold text-slate-900 dark:border-slate-900/35">
             AI
           </span>
         </span>
