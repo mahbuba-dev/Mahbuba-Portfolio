@@ -20,8 +20,18 @@ const PORTRAIT_SRC = "/img/about-img-mahbuba.jpg";
 const FACTS = [
   { icon: User, label: "Name", value: "Mahbuba Akter" },
   { icon: MapPin, label: "Location", value: "New York, USA" },
-  { icon: Mail, label: "Email", value: "mahbubaislam7010@gmail.com" },
-  { icon: Phone, label: "Status", value: "Internships / Full-time" },
+  {
+    icon: Mail,
+    label: "Email",
+    value: "mahbubaislam7010@gmail.com",
+    href: "mailto:mahbubaislam7010@gmail.com",
+  },
+  {
+    icon: Phone,
+    label: "Status",
+    value: "Internships / Full-time",
+    href: "#contact",
+  },
 ];
 
 const SOCIALS = [
@@ -35,7 +45,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative scroll-mt-24 lg:px-10 max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-14 lg:py-15"
+      className="relative scroll-mt-24 lg:px-10 max-w-7xl mx-auto px-3 sm:px-6 py-8 sm:py-16 md:py-14 lg:py-15 max-[380px]:px-2 max-[380px]:py-6"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[420px_minmax(0,1fr)] items-start gap-10 lg:gap-16">
 
@@ -69,7 +79,7 @@ export function About() {
                   alt="Mahbuba Akter"
                   width={500}
                   height={320}
-                  className="h-60 w-full object-cover rounded-[1.6rem] sm:h-70 md:h-80"
+                  className="h-52 w-full object-cover rounded-[1.6rem] sm:h-70 md:h-80 max-[380px]:h-44"
                   priority
                 />
               </div>
@@ -78,35 +88,61 @@ export function About() {
 
          
           {/* FACTS MOVED UNDER IMAGE (BALANCES HEIGHT) */}
-      <dl className="
-        grid grid-cols-1 sm:grid-cols-2
-  gap-x-8 gap-y-4
-  w-full max-w-sm 
-  rounded-xl border border-white/10 bg-white/60 p-4 
-  backdrop-blur dark:bg-white/5
-">
+      <dl className="grid grid-cols-2 gap-x-4 gap-y-3 w-full max-w-sm rounded-xl border border-white/10 bg-white/60 p-3 backdrop-blur dark:bg-white/5 max-[380px]:gap-x-3 max-[380px]:gap-y-2 max-[380px]:p-2.5">
   {FACTS.map((f) => (
-    <div key={f.label} className="flex items-start gap-4">
+          <div key={f.label} className="flex items-start gap-4">
       
-      {/* SMALLER ICON */}
-      <span className="
-        grid h-6 w-6 place-items-center 
-        rounded-full 
-        bg-linear-to-r from-blue-500 to-cyan-400
-        text-white
-      ">
-        <f.icon className="h-3 w-3" />
-      </span>
+            {f.href ? (
+              <Link
+                href={f.href}
+                className="group flex items-start gap-4 rounded-md outline-hidden transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-blue-400/70"
+                aria-label={`${f.label}: ${f.value}`}
+              >
+                <span
+                  className="
+              grid h-6 w-6 place-items-center 
+              rounded-full 
+              bg-linear-to-r from-blue-500 to-cyan-400
+              text-white
+            "
+                >
+                  <f.icon className="h-3 w-3" />
+                </span>
 
-      {/* SMALLER TEXT */}
-      <div className="min-w-0">
-        <dt className="text-[10px] uppercase tracking-widest text-muted-foreground sm:text-[11px]">
-          {f.label}
-        </dt>
-        <dd className="text-[11px] font-medium sm:text-xs">
-          {f.value}
-        </dd>
-      </div>
+                <div className="min-w-0">
+                  <dt className="text-[7px] uppercase tracking-widest text-muted-foreground sm:text-[8px]">
+                    {f.label}
+                  </dt>
+                  <dd className="text-[8px] font-medium sm:text-[9px] group-hover:text-foreground">
+                    {f.value}
+                  </dd>
+                </div>
+              </Link>
+            ) : (
+              <>
+                {/* SMALLER ICON */}
+                <span
+                  className="
+              grid h-6 w-6 place-items-center 
+              rounded-full 
+              bg-linear-to-r from-blue-500 to-cyan-400
+              text-white
+            "
+                >
+                  <f.icon className="h-3 w-3" />
+                </span>
+
+                {/* SMALLER TEXT */}
+                <div className="min-w-0">
+                  <dt className="text-[7px] uppercase tracking-widest text-muted-foreground sm:text-[8px]">
+                    {f.label}
+                  </dt>
+                  <dd className="text-[8px] font-medium sm:text-[9px]">
+                    {f.value}
+                  </dd>
+                </div>
+              </>
+            )}
 
     </div>
   ))}
@@ -143,7 +179,7 @@ export function About() {
             About Me
           </span>
 
-          <h2 className="mt-3 text-2xl font-bold sm:text-3xl">
+          <h2 className="mt-3 text-xl font-bold sm:text-3xl max-[380px]:text-lg">
             Full Stack Developer.
           </h2>
 

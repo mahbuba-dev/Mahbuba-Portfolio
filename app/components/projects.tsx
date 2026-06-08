@@ -182,27 +182,59 @@ This project focuses on providing a comprehensive mentorship experience with cle
 
 export function Projects() {
   const items = PROJECTS.slice(0, 2);
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
+  const gridVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
 
   return (
-    <section id="projects" className="py-7">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
+    <section id="projects" className="py-7 max-[380px]:py-4">
+      <div className="mx-auto max-w-7xl px-3 sm:px-5 md:px-8 max-[380px]:px-2">
 
         {/* HEADER */}
-        <div className="mb-12 text-left mt-5 ml-3">
-          <h2 className="text-3xl font-bold ">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={sectionVariants}
+          className="mb-8 text-left mt-4 ml-1 max-[380px]:mb-6"
+        >
+          <h2 className="text-2xl font-bold sm:text-3xl max-[380px]:text-xl">
             Selected <span className="text-blue-500">Projects</span>
           </h2>
           <p className="mt-2 text-muted-foreground">
             A collection of real-world full-stack applications.
           </p>
-        </div>
+        </motion.div>
 
         {/* GRID */}
-        <div className="grid gap-6 lg:grid-cols-2">
+        <motion.div
+          className="grid gap-6 lg:grid-cols-2"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={gridVariants}
+        >
           {items.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>
@@ -277,17 +309,28 @@ function ProjectCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      className="rounded-2xl border bg-white/70 dark:bg-white/5 p-6 shadow-sm hover:shadow-lg transition"
+      variants={{
+        hidden: { opacity: 0, y: 28, scale: 0.98 },
+        show: {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: {
+            duration: 0.65,
+            ease: [0.16, 1, 0.3, 1],
+            delay: index * 0.04,
+          },
+        },
+      }}
+      whileHover={{ y: -6, scale: 1.01 }}
+      transition={{ type: "spring", stiffness: 140, damping: 16 }}
+      className="rounded-2xl border bg-white/70 dark:bg-white/5 p-4 sm:p-6 shadow-sm hover:shadow-lg transition max-[380px]:p-3"
     >
       <div className="mb-5">
         <div className="relative overflow-hidden rounded-2xl border border-black/10 bg-slate-100 dark:border-white/10 dark:bg-slate-900/70 p-3">
           <div className="relative aspect-16/10 overflow-hidden rounded-xl bg-white/70 dark:bg-slate-800/70">
             {hasMedia && activeMedia?.kind === "video" ? (
-              <video
+              <motion.video
                 key={activeMedia.src}
                 className="h-full w-full object-cover"
                 autoPlay
@@ -296,17 +339,28 @@ function ProjectCard({
                 playsInline
                 preload="metadata"
                 poster={project.previewPoster ?? screenshots[0]}
+                initial={{ opacity: 0, scale: 1.02 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
               >
                 <source src={activeMedia.src} type={activeMedia.type} />
-              </video>
+              </motion.video>
             ) : hasMedia && activeMedia?.kind === "image" ? (
-              <Image
-                src={activeMedia.src}
-                alt={`${project.title} preview ${activeIndex + 1}`}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover"
-              />
+              <motion.div
+                key={activeMedia.src}
+                className="absolute inset-0"
+                initial={{ opacity: 0, scale: 1.02 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <Image
+                  src={activeMedia.src}
+                  alt={`${project.title} preview ${activeIndex + 1}`}
+                  fill
+                  sizes="(max-width: 380px) 100vw, (max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </motion.div>
             ) : (
               <div className="absolute inset-0 grid place-items-center text-sm text-muted-foreground">
                 Screenshot coming soon

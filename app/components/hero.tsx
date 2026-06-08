@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import "./hero-animated-outline.css";
 
 const PORTRAIT_SRC = "/img/mahbuba-professional-img.png";
+const CINEMATIC_EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Hero() {
   return (
@@ -29,13 +30,18 @@ export function Hero() {
       <div className="mx-auto grid max-w-6xl gap-4 px-4 sm:px-6 md:grid-cols-[1fr_auto] md:items-center md:gap-5 lg:gap-10">
 
         {/* LEFT */}
-        <div className="order-2 flex flex-col items-center text-center md:order-1 md:items-start md:text-left">
+        <motion.div
+          initial={{ opacity: 0, x: -64, filter: "blur(4px)" }}
+          animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1.2, ease: CINEMATIC_EASE }}
+          className="order-2 flex flex-col items-center text-center md:order-1 md:items-start md:text-left will-change-transform"
+        >
 
           {/* greeting */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.85, delay: 0.08, ease: CINEMATIC_EASE }}
           >
             <span className="inline-flex items-center gap-1 rounded-full border border-white/25 bg-white/60 px-4 py-1 text-sm font-semibold text-foreground shadow-sm backdrop-blur-md dark:bg-white/10">
               Hey <span className="animate-wave">👋</span>
@@ -46,7 +52,7 @@ export function Hero() {
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.05 }}
+            transition={{ duration: 0.95, delay: 0.14, ease: CINEMATIC_EASE }}
             className="font-display mt-2 text-3xl font-bold leading-[1.08] tracking-[-0.03em] sm:text-4xl md:text-4xl max-[380px]:text-[1.75rem]"
           >
             I&apos;m{" "}
@@ -59,7 +65,7 @@ export function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: CINEMATIC_EASE }}
             className="mt-2 text-sm sm:text-base font-semibold text-foreground/90"
           >
             Full Stack Developer.
@@ -69,7 +75,7 @@ export function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
+            transition={{ duration: 0.92, delay: 0.28, ease: CINEMATIC_EASE }}
             className="mt-1.5 text-xs sm:text-sm text-muted-foreground max-[380px]:text-[11px]"
           >
             Next.js • React • TypeScript • Node.js • Prisma • PostgreSQL • MongoDB
@@ -79,7 +85,7 @@ export function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.95, delay: 0.36, ease: CINEMATIC_EASE }}
             className="mt-3 max-w-2xl text-xs sm:text-sm leading-relaxed text-muted-foreground max-[380px]:text-[11px]"
           >
             I specialize in building clean, scalable, and production-ready web applications using modern technologies. I focus on performance, user experience, and maintainable architecture.
@@ -89,7 +95,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
+            transition={{ duration: 0.9, delay: 0.46, ease: CINEMATIC_EASE }}
             className="mt-5 inline-flex items-center gap-2 rounded-full border border-blue-400 bg-blue-100 px-3 py-1 text-xs text-muted-foreground dark:bg-black"
           >
             <Briefcase className="h-3.5 w-3.5 text-brand-cyan" />
@@ -100,7 +106,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.96, delay: 0.54, ease: CINEMATIC_EASE }}
             className="mt-6 flex flex-col items-center gap-3 sm:flex-row md:items-start"
           >
 
@@ -126,14 +132,14 @@ export function Hero() {
           </Link>
         </Button>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* RIGHT */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="order-1 relative mx-auto md:order-2 md:mx-0"
+          initial={{ opacity: 0, x: 68, filter: "blur(4px)" }}
+          animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1.45, ease: CINEMATIC_EASE, delay: 0.12 }}
+          className="order-1 relative mx-auto md:order-2 md:mx-0 will-change-transform"
         >
           <PortraitBlob src={PORTRAIT_SRC} />
         </motion.div>
