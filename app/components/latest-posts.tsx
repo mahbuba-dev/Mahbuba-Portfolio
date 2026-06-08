@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { getAllPosts } from "@/lib/posts";
+import { motion } from "framer-motion";
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString("en-US", {
@@ -17,6 +20,18 @@ export function LatestPosts(): React.ReactElement | null {
 
   const [featured, ...rest] = posts;
 
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
   return (
     <section
       id="writing"
@@ -29,8 +44,14 @@ export function LatestPosts(): React.ReactElement | null {
       />
 
       {/* HEADER */}
-      <div className="md:ml-2 flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end ">
-        <div className="max-w-2xl">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+        variants={sectionVariants}
+        className="md:ml-2 flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end "
+      >
+        <motion.div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-widest text-transparent bg-gradient-to-r from-indigo-500 via-sky-500 to-cyan-500 bg-clip-text dark:from-indigo-300 dark:via-sky-300 dark:to-cyan-300">
             Writing
           </p>
@@ -46,7 +67,7 @@ export function LatestPosts(): React.ReactElement | null {
           <p className="mt-3 text-muted-foreground">
             Short, practical notes on what I&apos;m building and learning.
           </p>
-        </div>
+        </motion.div>
 
         <Link
           href="/blog"
@@ -55,12 +76,42 @@ export function LatestPosts(): React.ReactElement | null {
           All posts
           <ArrowRight className="h-4 w-4" />
         </Link>
-      </div>
+      </motion.div>
 
       {/* GRID */}
-      <div className="mt-12 grid gap-5 lg:grid-cols-12">
+      <motion.div
+        className="mt-12 grid gap-5 lg:grid-cols-12"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-60px" }}
+        variants={{
+          hidden: {},
+          show: {
+            transition: {
+              staggerChildren: 0.08,
+            },
+          },
+        }}
+      >
 
         {/* FEATURED */}
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 32, scale: 0.96 },
+            show: {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              transition: {
+                duration: 0.7,
+                ease: [0.16, 1, 0.3, 1],
+              },
+            },
+          }}
+          whileHover={{ y: -8, scale: 1.01 }}
+          transition={{ type: "spring", stiffness: 130, damping: 18 }}
+          className="lg:col-span-7 lg:row-span-2"
+        >
         <Link
           href={`/blog/${featured.slug}`}
           className="group relative isolate overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-7 backdrop-blur-xl transition hover:-translate-y-1 hover:border-indigo-400/50 hover:shadow-2xl hover:shadow-indigo-500/10 sm:p-9 lg:col-span-7 lg:row-span-2 dark:bg-white/5"
@@ -108,11 +159,29 @@ export function LatestPosts(): React.ReactElement | null {
             </span>
           </div>
         </Link>
+        </motion.div>
 
         {/* REST POSTS */}
         {rest.map((post, idx) => (
-          <Link
+          <motion.div
             key={post.slug}
+            variants={{
+              hidden: { opacity: 0, y: 28, scale: 0.97 },
+              show: {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                transition: {
+                  duration: 0.65,
+                  ease: [0.16, 1, 0.3, 1],
+                },
+              },
+            }}
+            whileHover={{ y: -6, scale: 1.01 }}
+            transition={{ type: "spring", stiffness: 135, damping: 17 }}
+            className="lg:col-span-5"
+          >
+          <Link
             href={`/blog/${post.slug}`}
             className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-5 backdrop-blur-xl transition hover:-translate-y-1 hover:border-indigo-400/50 hover:shadow-xl hover:shadow-indigo-500/10 lg:col-span-5 dark:bg-white/5"
           >
@@ -140,8 +209,9 @@ export function LatestPosts(): React.ReactElement | null {
               <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </div>
           </Link>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
