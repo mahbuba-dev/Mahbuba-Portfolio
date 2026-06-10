@@ -95,13 +95,13 @@ export function Contact() {
 
           
 
-         <ul className="mt-8 space-y-3 text-sm">
+         <ul className="mt-8 grid gap-3 rounded-[32px] border border-white/20 bg-white/10 p-1 shadow-[0_24px_80px_-48px_rgba(56,189,248,0.24)] backdrop-blur-2xl dark:border-slate-700/40 dark:bg-slate-950/20 text-sm">
 
   {/* EMAIL */}
   <li>
     <Link
       href="mailto:mahbubaislam7010@gmail.com"
-      className="group flex items-center gap-3 rounded-lg border border-border/40 bg-white/5 px-3 py-2 backdrop-blur-xl transition-all hover:border-indigo-400/40 hover:bg-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+      className="group flex items-center gap-3 rounded-[24px] border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-2xl shadow-[0_16px_32px_-18px_rgba(56,189,248,0.25)] transition-all hover:border-cyan-300/50 hover:bg-white/20 dark:border-slate-600/40 dark:bg-slate-950/20 dark:hover:bg-slate-900/30"
     >
       <span className="grid h-7 w-7 place-items-center rounded-md bg-linear-to-br from-indigo-500 via-sky-500 to-cyan-500 text-white shadow-md ring-1 ring-white/30">
         <Mail className="h-3.5 w-3.5" />
@@ -121,7 +121,7 @@ export function Contact() {
       <Link
         href="https://github.com/"
         target="_blank"
-        className="group flex items-center gap-3 rounded-lg border border-border/40 bg-white/5 px-3 py-2 backdrop-blur-xl transition-all hover:border-indigo-400/40 hover:bg-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+        className="group flex items-center gap-3 rounded-[24px] border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-2xl shadow-[0_16px_32px_-18px_rgba(56,189,248,0.22)] transition-all hover:border-cyan-300/50 hover:bg-white/20 dark:border-slate-600/40 dark:bg-slate-950/20 dark:hover:bg-slate-900/30"
       >
         <span className="grid h-7 w-7 place-items-center rounded-md bg-linear-to-br from-slate-200 via-slate-100 to-white text-slate-900 shadow-md ring-1 ring-white/30 dark:from-slate-700 dark:via-slate-600 dark:to-slate-500 dark:text-white">
           <GithubIcon className="h-3.5 w-3.5" />
@@ -138,7 +138,7 @@ export function Contact() {
       <Link
         href="https://linkedin.com/"
         target="_blank"
-        className="group flex items-center gap-3 rounded-lg border border-border/40 bg-white/5 px-3 py-2 backdrop-blur-xl transition-all hover:border-indigo-400/40 hover:bg-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+        className="group flex items-center gap-3 rounded-[24px] border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-2xl shadow-[0_16px_32px_-18px_rgba(56,189,248,0.22)] transition-all hover:border-cyan-300/50 hover:bg-white/20 dark:border-slate-600/40 dark:bg-slate-950/20 dark:hover:bg-slate-900/30"
       >
         <span className="grid h-7 w-7 place-items-center rounded-md bg-linear-to-br from-sky-400 via-blue-500 to-indigo-500 text-white shadow-md ring-1 ring-white/30">
           <LinkedinIcon className="h-3.5 w-3.5" />

@@ -1,5 +1,6 @@
 import { PROJECTS } from "@/app/data/projects-data";
 import { notFound } from "next/navigation";
+import ClientGallery from "@/app/components/project-gallery-client";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -24,7 +25,13 @@ export default async function ProjectDetailsPage({ params }: Props) {
 
   
   return (
-    <main className="min-h-screen px-6 py-16 bg-white dark:bg-black transition-colors">
+    <main className="min-h-screen px-6 py-16 transition-colors relative overflow-hidden">
+      {/* subtle full-bleed blue glassy background */}
+      <div className="absolute inset-0 -z-20 " />
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="w-full h-full " />
+      </div>
+
       <div className="mx-auto max-w-5xl space-y-10">
 
         {/* HEADER */}
@@ -43,28 +50,13 @@ export default async function ProjectDetailsPage({ params }: Props) {
           </div>
         </div>
 
-        {/* IMAGE GALLERY */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {project.images.map((img, i) => (
-            <div
-              key={i}
-              className="flex items-center justify-center aspect-[4/3] rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-md overflow-hidden"
-              style={{ minHeight: '180px', minWidth: '0' }}
-            >
-              {img ? (
-                <img
-                  src={img}
-                  alt={`Screenshot ${i + 1}`}
-                  className="object-cover w-full h-full transition-transform duration-200 hover:scale-105 rounded-xl"
-                  style={{ maxHeight: '240px', maxWidth: '100%' }}
-                />
-              ) : (
-                <div className="flex items-center justify-center w-full h-full text-gray-400 text-xs bg-gray-50 dark:bg-zinc-800">
-                  No image
-                </div>
-              )}
-            </div>
-          ))}
+        {/* IMAGE GALLERY (framed, sliding) */}
+        <div>
+          {/* Client-side carousel */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          {/* ProjectGalleryClient handles its own auto-slide, controls and frame styling */}
+          {/* Import as client component */}
+          <ClientGallery images={project.images} />
         </div>
 
         {/* OVERVIEW */}

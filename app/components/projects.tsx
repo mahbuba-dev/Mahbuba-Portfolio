@@ -189,7 +189,7 @@ export function Projects() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.16, 1, 0.3, 1] as any,
       },
     },
   };
@@ -315,20 +315,27 @@ function ProjectCard({
           opacity: 1,
           y: 0,
           scale: 1,
-          transition: {
+            transition: {
             duration: 0.65,
-            ease: [0.16, 1, 0.3, 1],
+            ease: [0.16, 1, 0.3, 1] as any,
             delay: index * 0.04,
           },
         },
       }}
       whileHover={{ y: -6, scale: 1.01 }}
       transition={{ type: "spring", stiffness: 140, damping: 16 }}
-      className="rounded-2xl border bg-white/70 dark:bg-white/5 p-4 sm:p-6 shadow-sm hover:shadow-lg transition max-[380px]:p-3"
+      className="rounded-2xl border border-slate-300/25 bg-white/75 p-3 sm:p-5 shadow-[0_18px_60px_-32px_rgba(56,189,248,0.28)] hover:shadow-[0_24px_80px_-30px_rgba(56,189,248,0.32)] backdrop-blur-xl transition max-[380px]:p-3 dark:border-slate-700/40 dark:bg-slate-950/70"
     >
       <div className="mb-5">
-        <div className="relative overflow-hidden rounded-2xl border border-black/10 bg-slate-100 dark:border-white/10 dark:bg-slate-900/70 p-3">
-          <div className="relative aspect-16/10 overflow-hidden rounded-xl bg-white/70 dark:bg-slate-800/70">
+        <div className="relative overflow-hidden rounded-2xl border border-slate-200/40 bg-white/70 p-2 backdrop-blur-xl dark:border-slate-700/40 dark:bg-slate-900/40">
+          <div
+            className="relative aspect-16/10 overflow-hidden rounded-xl"
+            style={{
+              background:
+                "conic-gradient(from 180deg at 20% 10%, rgba(248,250,252,0.14), rgba(241,245,249,0.11), rgba(255,255,255,0.08))",
+            }}
+          >
+            <div className="absolute inset-0 bg-white/10 backdrop-blur-sm mix-blend-overlay pointer-events-none" />
             {hasMedia && activeMedia?.kind === "video" ? (
               <motion.video
                 key={activeMedia.src}
@@ -341,7 +348,7 @@ function ProjectCard({
                 poster={project.previewPoster ?? screenshots[0]}
                 initial={{ opacity: 0, scale: 1.02 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] as any }}
               >
                 <source src={activeMedia.src} type={activeMedia.type} />
               </motion.video>
@@ -351,7 +358,7 @@ function ProjectCard({
                 className="absolute inset-0"
                 initial={{ opacity: 0, scale: 1.02 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] as any }}
               >
                 <Image
                   src={activeMedia.src}
@@ -445,14 +452,14 @@ function ProjectCard({
       </div>
 
       {/* ACTION BAR */}
-      <div className="mt-6 rounded-xl border border-black/10 bg-black/2 p-3 dark:border-white/10 dark:bg-white/3">
-        <div className="flex flex-wrap items-center gap-1.5 sm:justify-between sm:flex-nowrap">
+      <div className="mt-6 rounded-xl border border-slate-300/30 bg-white/60 p-3 shadow-sm shadow-slate-200/40 backdrop-blur-sm dark:border-slate-700/40 dark:bg-slate-950/30">
+        <div className="flex flex-wrap items-center gap-1 sm:flex-nowrap sm:justify-between">
             {project.client && (
               <a href={project.client} target="_blank" rel="noopener noreferrer">
                 <Button
                   variant="outline"
                   size="sm"
-                  className="group relative overflow-hidden h-7 whitespace-nowrap rounded-full border-blue-500/25 bg-blue-500/5 px-2 text-[10px] font-medium text-blue-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-500/10 hover:text-blue-800 hover:shadow-md hover:shadow-blue-500/20 dark:text-blue-300 dark:hover:text-blue-200 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-blue-400 after:to-cyan-400 after:transition-all after:duration-300 hover:after:w-[72%]"
+                  className="group relative overflow-hidden h-6 whitespace-nowrap rounded-full border-blue-500/25 bg-blue-500/5 px-1 text-[8px] font-medium text-blue-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-500/10 hover:text-blue-800 hover:shadow-md hover:shadow-blue-500/20 dark:text-blue-300 dark:hover:text-blue-200 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-blue-400 after:to-cyan-400 after:transition-all after:duration-300 hover:after:w-[72%]"
                 >
                   <Code2 className="h-2.5 w-2.5 transition-transform duration-300 group-hover:scale-110" /> Frontend Repo
                 </Button>
@@ -464,7 +471,7 @@ function ProjectCard({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="group relative overflow-hidden h-7 whitespace-nowrap rounded-full border-indigo-500/25 bg-indigo-500/5 px-2 text-[10px] font-medium text-indigo-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-indigo-500/10 hover:text-indigo-800 hover:shadow-md hover:shadow-indigo-500/20 dark:text-indigo-300 dark:hover:text-indigo-200 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-indigo-400 after:to-sky-400 after:transition-all after:duration-300 hover:after:w-[72%]"
+                  className="group relative overflow-hidden h-6 whitespace-nowrap rounded-full border-indigo-500/25 bg-indigo-500/5 px-1 text-[8px] font-medium text-indigo-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-indigo-500/10 hover:text-indigo-800 hover:shadow-md hover:shadow-indigo-500/20 dark:text-indigo-300 dark:hover:text-indigo-200 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-indigo-400 after:to-sky-400 after:transition-all after:duration-300 hover:after:w-[72%]"
                 >
                   <ServerCog className="h-2.5 w-2.5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" /> Backend Repo
                 </Button>
@@ -476,7 +483,7 @@ function ProjectCard({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="group relative overflow-hidden h-7 whitespace-nowrap rounded-full border-slate-500/25 bg-slate-500/5 px-2 text-[10px] font-medium text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-500/10 hover:text-slate-900 hover:shadow-md hover:shadow-slate-500/20 dark:text-slate-300 dark:hover:text-slate-100 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-slate-300 after:to-slate-100 after:transition-all after:duration-300 hover:after:w-[72%]"
+                  className="group relative overflow-hidden h-6 whitespace-nowrap rounded-full border-slate-500/25 bg-slate-500/5 px-1.5 text-[9px] font-medium text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-500/10 hover:text-slate-900 hover:shadow-md hover:shadow-slate-500/20 dark:text-slate-300 dark:hover:text-slate-100 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-slate-300 after:to-slate-100 after:transition-all after:duration-300 hover:after:w-[72%]"
                 >
                   <Code2 className="h-2.5 w-2.5 transition-transform duration-300 group-hover:scale-110" /> Source
                 </Button>
@@ -486,7 +493,7 @@ function ProjectCard({
             <a href={project.demo} target="_blank" rel="noopener noreferrer">
               <Button
                 size="sm"
-                className="group relative overflow-hidden h-7 whitespace-nowrap rounded-full bg-linear-to-r from-blue-600 via-cyan-500 to-teal-500 px-2 text-[10px] font-semibold text-white shadow-md shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-lg hover:shadow-cyan-400/35 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-white/80 after:to-cyan-100 after:transition-all after:duration-300 hover:after:w-[78%]"
+                className="group relative overflow-hidden h-6 whitespace-nowrap rounded-full bg-linear-to-r from-blue-600 via-cyan-500 to-teal-500 px-1.5 text-[9px] font-semibold text-white shadow-md shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-lg hover:shadow-cyan-400/35 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-white/80 after:to-cyan-100 after:transition-all after:duration-300 hover:after:w-[78%]"
               >
                 <Globe className="h-2.5 w-2.5 transition-transform duration-300 group-hover:scale-110" /> Live Product
                 <ArrowUpRight className="h-2.5 w-2.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -497,7 +504,7 @@ function ProjectCard({
               <Button
                 variant="outline"
                 size="sm"
-                className="group relative overflow-hidden h-7 whitespace-nowrap rounded-full border-black/15 bg-white/80 px-2 text-[10px] font-semibold text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-md hover:shadow-slate-500/20 dark:border-white/15 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-slate-400 after:to-slate-700 dark:after:from-slate-300 dark:after:to-slate-100 after:transition-all after:duration-300 hover:after:w-[72%]"
+                className="group relative overflow-hidden h-6 whitespace-nowrap rounded-full border-black/15 bg-white/80 px-1.5 text-[9px] font-semibold text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-md hover:shadow-slate-500/20 dark:border-white/15 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:bg-linear-to-r after:from-slate-400 after:to-slate-700 dark:after:from-slate-300 dark:after:to-slate-100 after:transition-all after:duration-300 hover:after:w-[72%]"
               >
                 <FileText className="h-2.5 w-2.5 transition-transform duration-300 group-hover:scale-110" /> Case Study
               </Button>

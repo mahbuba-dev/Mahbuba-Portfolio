@@ -63,7 +63,7 @@
 
 /* ── Light theme (CSV-driven, blue brand palette) ───────────────────── */
 :root {
-  --background: #F9FAFB;
+  --background: #ECF8FF;
   --foreground: #111827;
   --card: #FFFFFF;
   --card-foreground: #111827;
@@ -71,15 +71,15 @@
   --popover-foreground: #111827;
   --primary: #3B82F6;
   --primary-foreground: #FFFFFF;
-  --secondary: #E5E7EB;
+  --secondary: #DDE9FF;
   --secondary-foreground: #111827;
-  --muted: #F1F5F9;
+  --muted: #E6F2FF;
   --muted-foreground: #475569;
   --accent: #DBEAFE;
   --accent-foreground: #1E3A8A;
   --destructive: #EF4444;
-  --border: #E5E7EB;
-  --input: #E5E7EB;
+  --border: #DDE9FF;
+  --input: #DDE9FF;
   --ring: #60A5FA;
   --chart-1: #3B82F6;
   --chart-2: #06B6D4;

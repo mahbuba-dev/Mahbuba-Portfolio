@@ -14,43 +14,50 @@ export default function BlogIndexPage() {
   const tags = getAllTags();
 
   return (
-    <section className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
-      <div className="max-w-2xl">
-        <p className="text-xs font-medium uppercase tracking-widest text-indigo-400">
-          Blog
-        </p>
-        <h1 className="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-          Writing about the things I&apos;m building.
-        </h1>
-        <p className="mt-4 text-muted-foreground text-sm">
-          Short, practical posts on full-stack development, real-time systems,
-          and modern web UI.
-        </p>
-      </div>
+    <section className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
+      <div className="grid gap-8">
+        <div className="">
+          <div className="max-w-2xl">
+            <p className="text-xs font-medium uppercase tracking-[0.35em] text-indigo-300/80">
+              Blog
+            </p>
+            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
+              Writing about the things I&apos;m building.
+            </h1>
+            <p className="mt-4 text-sm text-slate-300">
+              Short, practical posts on full-stack development, real-time systems,
+              and modern web UI.
+            </p>
+          </div>
 
-      {tags.length > 0 && (
-        <ul className="mt-8 flex flex-wrap gap-1.5">
-          {tags.map(({ tag, count }) => (
-            <li key={tag}>
-              <Link
-                href={`/blog/tag/${tagToSlug(tag)}`}
-                className="inline-flex text-xs items-center gap-1 rounded-md border border-border/60 bg-background/60 px-2 py-0.5 text-[11px] text-muted-foreground transition-colors hover:border-indigo-400/40 hover:text-indigo-300"
-              >
-                #{tag}
-                <span className="text-muted-foreground/60">{count}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {posts.length === 0 ? (
-        <div className="mt-12 text-xs rounded-2xl border border-dashed border-border/60 p-10 text-center  text-muted-foreground">
-          No posts yet — check back soon.
+          {tags.length > 0 && (
+            <div className="mt-8">
+              <div className="flex flex-wrap gap-2">
+                {tags.map(({ tag, count }) => (
+                  <Link
+                    key={tag}
+                    href={`/blog/tag/${tagToSlug(tag)}`}
+                    className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1.5 text-[11px] font-semibold text-slate-300 transition hover:border-indigo-400/40 hover:bg-indigo-500/10 hover:text-indigo-200"
+                  >
+                    <span>#{tag}</span>
+                    <span className="text-slate-400">{count}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-      ) : (
-        <BlogSearch posts={posts} />
-      )}
+
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl shadow-slate-950/10">
+          {posts.length === 0 ? (
+            <div className="text-xs rounded-2xl border border-dashed border-border/60 p-10 text-center text-muted-foreground">
+              No posts yet — check back soon.
+            </div>
+          ) : (
+            <BlogSearch posts={posts} />
+          )}
+        </div>
+      </div>
     </section>
   );
 }
