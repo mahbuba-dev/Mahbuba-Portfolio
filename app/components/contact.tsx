@@ -95,7 +95,7 @@ export function Contact() {
 
           
 
-         <ul className="mt-8 grid gap-3 rounded-[32px] border border-white/20 bg-white/10 p-1 shadow-[0_24px_80px_-48px_rgba(56,189,248,0.24)] backdrop-blur-2xl dark:border-slate-700/40 dark:bg-slate-950/20 text-sm">
+         <ul className="mt-8 grid gap-3 rounded-[32px]   p-1 shadow-[0_24px_80px_-48px_rgba(56,189,248,0.24)] backdrop-blur-2xl dark:border-slate-700/40 dark:bg-slate-950/20 text-sm">
 
   {/* EMAIL */}
   <li>

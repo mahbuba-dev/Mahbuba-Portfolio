@@ -88,14 +88,14 @@ export function About() {
 
          
           {/* FACTS MOVED UNDER IMAGE (BALANCES HEIGHT) */}
-      <dl className="grid grid-cols-2 gap-x-4 gap-y-3 w-full max-w-sm rounded-xl border border-white/10 bg-white/60 p-3 backdrop-blur dark:bg-white/5 max-[380px]:gap-x-3 max-[380px]:gap-y-2 max-[380px]:p-2.5">
-  {FACTS.map((f) => (
-          <div key={f.label} className="flex items-start gap-4">
+      <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 w-full max-w-sm rounded-xl border border-white/10 bg-white/60 p-3 backdrop-blur dark:bg-white/5 max-[380px]:gap-x-3 max-[380px]:gap-y-2 max-[380px]:p-2.5">
+    {FACTS.map((f) => (
+      <div key={f.label} className="flex items-center gap-4">
       
             {f.href ? (
-              <Link
+                <Link
                 href={f.href}
-                className="group flex items-start gap-4 rounded-md outline-hidden transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-blue-400/70"
+                className="group flex items-center gap-3 rounded-md outline-hidden transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-blue-400/70"
                 aria-label={`${f.label}: ${f.value}`}
               >
                 <span
@@ -113,7 +113,7 @@ export function About() {
                   <dt className="text-[7px] uppercase tracking-widest text-muted-foreground sm:text-[8px]">
                     {f.label}
                   </dt>
-                  <dd className="text-[8px] font-medium sm:text-[9px] group-hover:text-foreground">
+                  <dd className="text-[7px] font-medium sm:text-[8px] md:text-[8px] group-hover:text-foreground">
                     {f.value}
                   </dd>
                 </div>
@@ -137,7 +137,7 @@ export function About() {
                   <dt className="text-[7px] uppercase tracking-widest text-muted-foreground sm:text-[8px]">
                     {f.label}
                   </dt>
-                  <dd className="text-[8px] font-medium sm:text-[9px]">
+                  <dd className="text-[7px] font-medium sm:text-[8px] md:text-[8px]">
                     {f.value}
                   </dd>
                 </div>

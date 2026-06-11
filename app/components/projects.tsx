@@ -407,7 +407,7 @@ function ProjectCard({
                 onClick={() => setActiveIndex(dotIndex)}
                 className={`h-2.5 rounded-full transition-all ${
                   dotIndex === activeIndex
-                    ? "w-7 bg-emerald-500"
+                    ? "w-7 bg-sky-500"
                     : "w-2.5 bg-slate-300 dark:bg-slate-500"
                 }`}
               />
