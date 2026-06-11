@@ -289,7 +289,11 @@ export function RecruiterChatbot() {
         onClick={() => setOpen((prev) => !prev)}
         whileHover={{ y: -2, scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="pointer-events-auto relative ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/30 bg-slate-900/90 text-white shadow-xl shadow-cyan-500/30 backdrop-blur max-[380px]:h-9 max-[380px]:w-9 sm:h-12 sm:w-auto sm:gap-1.5 sm:justify-start sm:pl-1 sm:pr-3"
+        className={`pointer-events-auto relative ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/30 bg-slate-900/90 text-white backdrop-blur max-[380px]:h-9 max-[380px]:w-9 sm:h-12 sm:w-auto sm:gap-1.5 sm:justify-start sm:pl-1 sm:pr-3 transition-all ${
+          loading
+            ? "shadow-2xl shadow-cyan-500/60 animate-pulse"
+            : "shadow-xl shadow-cyan-500/30"
+        }`}
         aria-label="Open Mahbuba AI assistant"
       >
         <span className="relative grid h-8 w-8 place-items-center rounded-full bg-slate-900 ring-2 ring-cyan-300/45 shadow-md shadow-cyan-400/40 max-[380px]:h-7 max-[380px]:w-7 sm:h-9 sm:w-9">
